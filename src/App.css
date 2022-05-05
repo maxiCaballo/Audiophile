@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap");
+/*GLOBAL STYLES*/
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -14,3 +15,64 @@
   --black: #000000;
   --white: #ffffff;
 }
+html {
+  font-size: 62.5%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+h1 {
+  font-size: 5.6rem;
+  line-height: 58px;
+  letter-spacing: 2px;
+}
+h2 {
+  font-size: 4rem;
+  line-height: 44px;
+  letter-spacing: 1.5px;
+}
+h3 {
+  font-size: 3.2rem;
+  line-height: 36px;
+  letter-spacing: 1.15px;
+}
+h4 {
+  font-size: 2.8rem;
+  line-height: 38px;
+  letter-spacing: 2px;
+}
+h5 {
+  font-size: 2.4rem;
+  line-height: 33px;
+  letter-spacing: 1.7px;
+}
+h6 {
+  font-size: 1.8rem;
+  line-height: 24px;
+  letter-spacing: 1.3px;
+}
+p {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 25px;
+}
+.overline {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 19px;
+  letter-spacing: 10px;
+  color: var(--color1);
+}
+.subtitle {
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 25px;
+  letter-spacing: 1px;
+  color: var(--color1);
+}
+/*GLOBAL STYLES*/
