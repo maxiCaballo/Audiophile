@@ -1,11 +1,5 @@
 /*GLOBAL STYLES*/
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&display=swap");
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Manrope", sans-serif;
-}
 :root {
   --color1: #d87d4a;
   --color2: #fbaf85;
@@ -15,8 +9,22 @@
   --black: #000000;
   --white: #ffffff;
 }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
 html {
+  height: 100%;
+  width: 100%;
+  border: none;
   font-size: 62.5%;
+}
+body {
+  background-color: var(--white);
+  height: 100%;
+  width: 100vw;
 }
 h1,
 h2,
@@ -61,6 +69,13 @@ p {
   font-size: 1.5rem;
   line-height: 25px;
 }
+#App {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+#root {
+  height: 100%;
+}
 .overline {
   font-weight: 400;
   font-size: 1.4rem;
@@ -75,4 +90,18 @@ p {
   letter-spacing: 1px;
   color: var(--color1);
 }
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hCentered {
+  display: flex;
+  justify-content: center;
+}
+.vCentered {
+  display: flex;
+  align-items: center;
+}
+
 /*GLOBAL STYLES*/
