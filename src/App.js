@@ -1,13 +1,23 @@
-//Components
+//Pages
 import Home from "./pages/Home";
-//Css
+//Components
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+//
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
   return (
-    <div id="App" className="border w-100 h-100">
-      <Home />
-    </div>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 }
 

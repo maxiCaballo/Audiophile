@@ -1,4 +1,4 @@
-/*GLOBAL STYLES*/
+/* ------ GLOBAL STYLES ------ */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&display=swap");
 :root {
   --color1: #d87d4a;
@@ -18,7 +18,6 @@
 html {
   height: 100%;
   width: 100%;
-  border: none;
   font-size: 62.5%;
 }
 body {
@@ -26,6 +25,40 @@ body {
   height: 100%;
   width: 100vw;
 }
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+.overline {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 19px;
+  letter-spacing: 10px;
+  color: var(--color1);
+}
+.subtitle {
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 25px;
+  letter-spacing: 1px;
+  color: var(--color1);
+}
+/* ------ My classes ------*/
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hCentered {
+  display: flex;
+  justify-content: center;
+}
+.vCentered {
+  display: flex;
+  align-items: center;
+}
+/*------ My classes ------*/
 h1,
 h2,
 h3,
@@ -69,39 +102,4 @@ p {
   font-size: 1.5rem;
   line-height: 25px;
 }
-#App {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-#root {
-  height: 100%;
-}
-.overline {
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 19px;
-  letter-spacing: 10px;
-  color: var(--color1);
-}
-.subtitle {
-  font-weight: 700;
-  font-size: 1.3rem;
-  line-height: 25px;
-  letter-spacing: 1px;
-  color: var(--color1);
-}
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hCentered {
-  display: flex;
-  justify-content: center;
-}
-.vCentered {
-  display: flex;
-  align-items: center;
-}
-
-/*GLOBAL STYLES*/
+/* ------ GLOBAL STYLES ------ */
