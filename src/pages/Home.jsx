@@ -1,7 +1,9 @@
+import MainHome from "../components/MainHome/MainHome";
+
 function Home() {
   return (
     <>
-      <div className="container border"></div>
+      <MainHome />
     </>
   );
 }

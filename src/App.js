@@ -6,6 +6,10 @@ import Footer from "./components/Footer/Footer";
 //
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+//Breakpoints
+//Dekstop >= 769px
+//Tablet >=376px <= 768px
+//Mobile <= 375px
 
 function App() {
   return (

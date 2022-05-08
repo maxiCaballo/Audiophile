@@ -1,0 +1,5 @@
+.homeImgBorderTop {
+  height: 1px;
+  background-color: var(--white);
+  opacity: 0.2;
+}

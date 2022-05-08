@@ -6,6 +6,7 @@
   --color3: #101010;
   --color4: #f1f1f1;
   --color5: #fafafa;
+  --color6: #191919;
   --black: #000000;
   --white: #ffffff;
 }
@@ -57,6 +58,12 @@ body {
 .vCentered {
   display: flex;
   align-items: center;
+}
+.image_centered {
+  background-position: center center / cover no-repeat;
+}
+.a {
+  background-color: #191919;
 }
 /*------ My classes ------*/
 h1,
