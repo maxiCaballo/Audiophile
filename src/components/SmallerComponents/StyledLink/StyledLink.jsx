@@ -9,10 +9,7 @@ export const NavbarLink = styled(Link)`
     color: var(--color1);
   }
 `;
-export const NoStylesLink = styled(Link)`
-  text-decoration: none;
-`;
-export const ButtonLink = styled(Link)`
+export const StylesButtonLink = styled(Link)`
   text-decoration: none;
   color: var(${({ color }) => color});
   &:hover {

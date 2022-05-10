@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { ButtonLink } from "../StyledLink/StyledLink";
+import { StylesButtonLink as Link } from "../StyledLink/StyledLink";
 
 export default function LinkButton({ type, content, reference }) {
   return (
     <StyledButton type={type}>
-      <ButtonLink
+      <Link
         to={reference}
         color={styleType(type).color}
         colorHover={styleType(type).colorHover}
       >
         {content}
-      </ButtonLink>
+      </Link>
     </StyledButton>
   );
 }

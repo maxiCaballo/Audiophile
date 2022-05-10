@@ -4,7 +4,6 @@ import imageHeroTablet from "../../assets/home/tablet/image-header.jpg";
 import imageHeroMobile from "../../assets/home/mobile/image-header.jpg";
 //Components
 import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
-//import { StyledButtonLink } from "../SmallerComponents/StyledLink/StyledLink";
 //Styles
 import "./styles.css";
 import styled from "styled-components";
