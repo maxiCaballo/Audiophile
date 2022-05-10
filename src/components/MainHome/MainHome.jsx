@@ -3,7 +3,7 @@ import imageHeroDekstop from "../../assets/home/desktop/image-hero.jpg";
 import imageHeroTablet from "../../assets/home/tablet/image-header.jpg";
 import imageHeroMobile from "../../assets/home/mobile/image-header.jpg";
 //Components
-import Button from "../SmallerComponents/Button/Button";
+import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
 //import { StyledButtonLink } from "../SmallerComponents/StyledLink/StyledLink";
 //Styles
 import "./styles.css";
@@ -23,9 +23,7 @@ function MainHome() {
               made for the passionate music enthusiast.
             </p>
             <div>
-              <Button type={1} content="see product" />
-              <Button type={2} content="see product" />
-              <Button type={3} content="see product" />
+              <LinkButton type={1} content="see product" reference="/" />
             </div>
           </div>
         </ImgHero>

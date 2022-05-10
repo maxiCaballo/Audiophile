@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { ButtonLink } from "../StyledLink/StyledLink";
-export default function Button({ type, content }) {
+
+export default function LinkButton({ type, content, reference }) {
   return (
     <StyledButton type={type}>
       <ButtonLink
-        to="/"
+        to={reference}
         color={styleType(type).color}
         colorHover={styleType(type).colorHover}
       >
@@ -34,7 +35,7 @@ function styleType(type) {
   switch (type) {
     case 1:
       return {
-        backgroundColor: " #d87d4a",
+        backgroundColor: "#d87d4a",
         color: "--white",
         border: "none",
         backgroundColorHover: "#fbaf85;",
