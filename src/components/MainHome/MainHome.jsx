@@ -4,6 +4,7 @@ import imageHeroTablet from "../../assets/home/tablet/image-header.jpg";
 import imageHeroMobile from "../../assets/home/mobile/image-header.jpg";
 //Components
 import Button from "../SmallerComponents/Button/Button";
+//import { StyledButtonLink } from "../SmallerComponents/StyledLink/StyledLink";
 //Styles
 import "./styles.css";
 import styled from "styled-components";
@@ -22,7 +23,9 @@ function MainHome() {
               made for the passionate music enthusiast.
             </p>
             <div>
-              <Button type={1} />
+              <Button type={1} content="see product" />
+              <Button type={2} content="see product" />
+              <Button type={3} content="see product" />
             </div>
           </div>
         </ImgHero>

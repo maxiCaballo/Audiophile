@@ -1,7 +1,17 @@
 import styled from "styled-components";
-
-export default function Button({ type }) {
-  return <StyledButton type={type}>See product</StyledButton>;
+import { ButtonLink } from "../StyledLink/StyledLink";
+export default function Button({ type, content }) {
+  return (
+    <StyledButton type={type}>
+      <ButtonLink
+        to="/"
+        color={styleType(type).color}
+        colorHover={styleType(type).colorHover}
+      >
+        {content}
+      </ButtonLink>
+    </StyledButton>
+  );
 }
 
 const StyledButton = styled.button`
@@ -28,6 +38,7 @@ function styleType(type) {
         color: "--white",
         border: "none",
         backgroundColorHover: "#fbaf85;",
+        colorHover: "#fff",
       };
     case 2:
       return {
@@ -35,6 +46,7 @@ function styleType(type) {
         color: "--white",
         border: "none",
         backgroundColorHover: "#4c4c4c",
+        colorHover: "#fff",
       };
     default:
       return {

@@ -11,5 +11,12 @@ export const NavbarLink = styled(Link)`
 `;
 export const NoStylesLink = styled(Link)`
   text-decoration: none;
-  color: var(--white);
+`;
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
+  color: var(${({ color }) => color});
+  &:hover {
+    transition: 0.5s;
+    color: ${({ colorHover }) => colorHover};
+  }
 `;
