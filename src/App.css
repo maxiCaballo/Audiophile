@@ -9,7 +9,9 @@
   --color6: #191919;
   --color7:#4c4c4c
   --black: #000000;
-  --white: #ffffff;  
+  --white: #ffffff;
+  --borderTopStyle: 1px solid #474747;
+  --marginBetweenComponents:160px auto;
 }
 * {
   padding: 0;
@@ -24,13 +26,12 @@ html {
 }
 body {
   background-color: var(--white);
-  height: 100%;
-  width: 100vw;
+  height: 100%;  
 }
 #root {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100%;
+ 
 }
 .overline {
   font-weight: 400;
@@ -46,7 +47,7 @@ body {
   letter-spacing: 1px;
   color: var(--color1);
 }
-/* ------ My classes ------*/
+/* ------ My classes -Start- ------*/
 .centered {
   display: flex;
   align-items: center;
@@ -63,7 +64,7 @@ body {
 .image_centered {
   background-position: center center / cover no-repeat;
 }
-/*------ My classes ------*/
+/*------ My classes -End- ------*/
 h1,
 h2,
 h3,

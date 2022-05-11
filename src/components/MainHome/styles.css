@@ -1,8 +1,3 @@
-.homeImgBorderTop {
-  height: 1px;
-  background-color: var(--white);
-  opacity: 0.2;
-}
 .newProductContainer {
   height: 346px;
   width: 398px;
