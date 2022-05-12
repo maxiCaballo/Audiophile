@@ -5,6 +5,8 @@ import NavigateCategory from "../SmallerComponents/NavigateCategory/NavigateCate
 import imageHeroDekstop from "../../assets/home/desktop/image-hero.jpg";
 import imageHeroTablet from "../../assets/home/tablet/image-header.jpg";
 import imageHeroMobile from "../../assets/home/mobile/image-header.jpg";
+import zx9Dekstop from "../../assets/home/desktop/image-speaker-zx9.png";
+import zx9TabletMobile from "../../assets/home/mobile/image-speaker-zx9.png";
 //Styles
 import "./styles.css";
 import styled from "styled-components";
@@ -28,6 +30,22 @@ function MainHome() {
         </ImgHero>
       </div>
       <NavigateCategory />
+      <Zx9Container className="container">
+        <Zx9>
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#FFF" fill="none" fillRule="evenodd" opacity=".202">
+              <circle cx="472" cy="472" r="235.5" />
+              <circle cx="472" cy="472" r="270.5" />
+              <circle cx="472" cy="472" r="471.5" />
+            </g>
+          </svg>
+          <div>
+            <ImgZx9Dekstop src={zx9Dekstop} alt="zx9" />
+            <ImgZx9MobileTablet src={zx9TabletMobile} alt="zx9" />
+          </div>
+          <div>Descripcion</div>
+        </Zx9>
+      </Zx9Container>
     </>
   );
 }
@@ -52,5 +70,68 @@ const ImgHero = styled.div`
   }
   @media only screen and (max-width: 768px) {
     justify-content: center;
+  }
+`;
+const Zx9Container = styled.div`
+  height: 560px;
+  @media only screen and (max-width: 575px) {
+    padding: var(--paddingMobile);
+  }
+`;
+const Zx9 = styled.div`
+  background-color: var(--color1);
+  border-radius: 8px;
+  position: relative;
+  & svg {
+    width: 100%;
+    height: 560px;
+  }
+  & > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    &:nth-child(2) {
+      left: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    &:nth-child(3) {
+      right: 0;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    & > div {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      &:nth-child(2) {
+        align-items: center;
+      }
+      &:nth-child(3) {
+        top: 280px;
+      }
+    }
+  }
+`;
+const ImgZx9Dekstop = styled.img`
+  height: 350px;
+  width: 290px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  @media screen and (min-width: 769px) {
+    display: inline;
+  }
+`;
+const ImgZx9MobileTablet = styled.img`
+  height: 237px;
+  width: 192px;
+  @media screen and (max-width: 768px) {
+    display: inline;
+  }
+  @media screen and (min-width: 769px) {
+    display: none;
   }
 `;
