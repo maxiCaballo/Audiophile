@@ -43,7 +43,18 @@ function MainHome() {
             <ImgZx9Dekstop src={zx9Dekstop} alt="zx9" />
             <ImgZx9MobileTablet src={zx9TabletMobile} alt="zx9" />
           </div>
-          <div>Descripcion</div>
+          <div className="centered">
+            <div>
+              <h1>ZX9 SPEAKER</h1>
+              <p>
+                Upgrade to premium speakers that are phenomenally built to
+                deliver truly remarkable sound.
+              </p>
+              <div>
+                <LinkButton type={2} content="see product" reference="/" />
+              </div>
+            </div>
+          </div>
         </Zx9>
       </Zx9Container>
     </>
@@ -99,18 +110,63 @@ const Zx9 = styled.div`
     }
     &:nth-child(3) {
       right: 0;
+      & > div {
+        color: var(--white);
+        height: 303px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        & h1 {
+          width: 261px;
+        }
+        & p {
+          opacity: 75%;
+          width: 349px;
+        }
+      }
     }
   }
+  //Tablet and Mobile
   @media only screen and (max-width: 768px) {
     & > div {
       width: 100%;
-      height: 50%;
       position: absolute;
       &:nth-child(2) {
+        height: 40%;
         align-items: center;
       }
       &:nth-child(3) {
-        top: 280px;
+        height: 60%;
+        top: 40%;
+        align-items: flex-start;
+        & > div {
+          align-items: center;
+          justify-content: space-evenly;
+          text-align: center;
+        }
+      }
+    }
+  }
+  //Only Tablet
+  @media screen and (min-width: 376px) and (max-width: 768px) {
+    & > div:nth-child(3) > div {
+      & h1 {
+        width: 320px;
+      }
+      & p {
+        width: 320px;
+      }
+    }
+  }
+  //Only Mobile
+  @media only screen and (max-width: 375px) {
+    & > div:nth-child(3) > div {
+      & h1 {
+        font-size: 5rem;
+      }
+      & h1,
+      p {
+        width: 250px;
       }
     }
   }
@@ -123,8 +179,8 @@ const ImgZx9Dekstop = styled.img`
   }
 `;
 const ImgZx9MobileTablet = styled.img`
-  height: 237px;
-  width: 192px;
+  height: 180px;
+  width: 150px;
   @media screen and (min-width: 769px) {
     display: none;
   }
