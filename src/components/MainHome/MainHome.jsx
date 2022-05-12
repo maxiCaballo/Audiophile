@@ -96,6 +96,8 @@ const Zx9 = styled.div`
   & svg {
     width: 100%;
     height: 560px;
+    position: relative;
+    left: -350px;
   }
   & > div {
     position: absolute;
@@ -171,6 +173,7 @@ const Zx9 = styled.div`
     }
   }
 `;
+//Images
 const ImgZx9Dekstop = styled.img`
   height: 350px;
   width: 290px;
