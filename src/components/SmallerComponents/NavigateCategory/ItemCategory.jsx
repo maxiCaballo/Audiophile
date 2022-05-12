@@ -37,19 +37,17 @@ const Item = styled.div`
   border-radius: 8px;
   cursor: pointer;
   padding: 0;
+  transition: 0.5s;
+  & img {
+    transition: 0.5s;
+  }
   & > div:nth-child(1) {
     height: 40%;
     position: relative;
     & img {
-      transition: 0.7s;
       height: 160px;
       position: absolute;
       top: -60px;
-    }
-    &:hover {
-      img {
-        transform: translateY(-35px);
-      }
     }
   }
   & > div:nth-child(2) {
@@ -57,12 +55,6 @@ const Item = styled.div`
     & > div:nth-child(1) {
       width: 100%;
       height: 50%;
-      border: 1px solid #e7e7e7;
-      border-radius: 8px;
-      transition: border 0.3s;
-      &:hover {
-        border: 1px solid var(--color2);
-      }
       & span {
         font-size: 1.8rem;
         font-weight: 700;
@@ -88,16 +80,24 @@ const Item = styled.div`
       & span:nth-child(2) {
         margin-left: 2px;
         margin-bottom: 2px;
-        transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        transition: 0.8s;
       }
-      &:hover {
-        span:nth-child(1) {
-          color: var(--color1);
-          opacity: 1;
-        }
-        span:nth-child(2) {
-          transform: translateX(5px);
-        }
+    }
+  }
+  :hover {
+    background-color: var(--color3);
+    color: var(--white);
+    transition: 0.5s;
+    & img {
+      transform: translateY(-15px);
+    }
+    & > div:nth-child(2) > div:nth-child(2) {
+      span:nth-child(1) {
+        color: var(--color1);
+        opacity: 1;
+      }
+      span:nth-child(2) {
+        transform: translateX(13px);
       }
     }
   }
