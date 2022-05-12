@@ -62,16 +62,17 @@ export default NavigateCategory;
 const CategoryContainer = styled.div`
   height: 284px;
   margin: var(--marginBetweenComponents);
-  padding: 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 25px;
   & > div {
     height: 204px;
-    width: 380px;
+    width: calc(100% / 3);
     background-color: var(--color4);
     border-radius: 8px;
     cursor: pointer;
+    padding: 0;
     & > div:nth-child(1) {
       height: 40%;
       position: relative;
@@ -143,6 +144,15 @@ const CategoryContainer = styled.div`
           }
         }
       }
+    }
+  }
+  @media only screen and (max-width: 575px) {
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    padding: var(--paddingMobile);
+    & > div {
+      width: 100%;
     }
   }
 `;

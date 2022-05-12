@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer className="">
-      <div className="fs-1 container centered">Footer</div>
+    <footer className="centered">
+      <div className="fs-1 container text-center">Footer</div>
     </footer>
   );
 }

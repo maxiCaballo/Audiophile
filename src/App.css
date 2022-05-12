@@ -12,6 +12,7 @@
   --white: #ffffff;
   --borderTopStyle: 1px solid #474747;
   --marginBetweenComponents:160px auto;
+  --paddingMobile: 0 24px
 }
 * {
   padding: 0;
@@ -106,7 +107,6 @@ h6 {
 p {
   font-weight: 500;
   font-size: 1.5rem;
-  line-height: 25px;
-  
+  line-height: 25px;  
 }
 /* ------ GLOBAL STYLES ------ */
