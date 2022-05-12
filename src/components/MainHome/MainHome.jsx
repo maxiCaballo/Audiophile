@@ -121,16 +121,10 @@ const ImgZx9Dekstop = styled.img`
   @media screen and (max-width: 768px) {
     display: none;
   }
-  @media screen and (min-width: 769px) {
-    display: inline;
-  }
 `;
 const ImgZx9MobileTablet = styled.img`
   height: 237px;
   width: 192px;
-  @media screen and (max-width: 768px) {
-    display: inline;
-  }
   @media screen and (min-width: 769px) {
     display: none;
   }
