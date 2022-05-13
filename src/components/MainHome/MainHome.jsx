@@ -1,12 +1,19 @@
 //Components
+import Container from "../SmallerComponents/Container/Container";
 import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
-import NavigateCategory from "../SmallerComponents/NavigateCategory/NavigateCategory";
-//Images
+import Categories from "../SmallerComponents/Categories/Categories";
+//------------Images------------
+//X99
 import imageHeroDekstop from "../../assets/home/desktop/image-hero.jpg";
 import imageHeroTablet from "../../assets/home/tablet/image-header.jpg";
 import imageHeroMobile from "../../assets/home/mobile/image-header.jpg";
+//Zx9
 import zx9Dekstop from "../../assets/home/desktop/image-speaker-zx9.png";
 import zx9TabletMobile from "../../assets/home/mobile/image-speaker-zx9.png";
+//Zx7
+import zx7DekstopTablet from "../../assets/home/desktop/image-speaker-zx7.jpg";
+import zx7Mobile from "../../assets/home/mobile/image-speaker-zx7.jpg";
+//------------Images------------
 //Styles
 import "./styles.css";
 import styled from "styled-components";
@@ -29,8 +36,8 @@ function MainHome() {
           </div>
         </ImgHero>
       </div>
-      <NavigateCategory />
-      <Zx9Container className="container">
+      <Categories />
+      <Container>
         <Zx9>
           <svg xmlns="http://www.w3.org/2000/svg">
             <g stroke="#FFF" fill="none" fillRule="evenodd" opacity=".202">
@@ -56,7 +63,17 @@ function MainHome() {
             </div>
           </div>
         </Zx9>
-      </Zx9Container>
+      </Container>
+      <Container>
+        <Zx7>
+          <div className="centered">
+            <div>
+              <h4> ZX7 SPEAKER</h4>
+              <LinkButton type={2} content="see product" reference={"/"} />
+            </div>
+          </div>
+        </Zx7>
+      </Container>
     </>
   );
 }
@@ -83,16 +100,11 @@ const ImgHero = styled.div`
     justify-content: center;
   }
 `;
-const Zx9Container = styled.div`
-  height: 560px;
-  @media only screen and (max-width: 575px) {
-    padding: var(--paddingMobile);
-  }
-`;
 const Zx9 = styled.div`
   background-color: var(--color1);
   border-radius: 8px;
   position: relative;
+  height: 560px;
   & svg {
     width: 100%;
     height: 560px;
@@ -171,6 +183,41 @@ const Zx9 = styled.div`
         width: 250px;
       }
     }
+  }
+`;
+const Zx7 = styled.div`
+  height: 320px;
+  border-radius: 8px;
+  margin: 48px auto;
+  background: url(${zx7DekstopTablet}) bottom -140px right/ cover no-repeat;
+  background-color: var(--color1);
+  & > div {
+    height: 100%;
+    width: 50%;
+    & div {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 118px;
+      width: 250px;
+    }
+  }
+  @media only screen and (min-width: 576px) and (max-width: 991px) {
+    background-position: bottom -50px right;
+    & > div div {
+      padding-left: 25px;
+    }
+  }
+  @media only screen and (max-width: 575px) {
+    & > div {
+      width: 100%;
+      justify-content: flex-start;
+
+      & div {
+        padding-left: 15px;
+      }
+    }
+    background: url(${zx7Mobile}) bottom / cover no-repeat;
   }
 `;
 //Images

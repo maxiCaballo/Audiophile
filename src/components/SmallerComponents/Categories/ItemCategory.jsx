@@ -85,7 +85,7 @@ const Item = styled.div`
     }
   }
   :hover {
-    background-color: var(--color3);
+    background-color: #4c4c4c;
     color: var(--white);
     transition: 0.5s;
     & img {

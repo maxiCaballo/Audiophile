@@ -1,5 +1,6 @@
 //Components
 import ItemCategory from "./ItemCategory";
+import Container from "../Container/Container";
 //Images
 import earphoneImg from "../../../assets/shared/desktop/image-category-thumbnail-earphones.png";
 import headphoneImg from "../../../assets/shared/desktop/image-category-thumbnail-headphones.png";
@@ -8,21 +9,21 @@ import speakerImg from "../../../assets/shared/desktop/image-category-thumbnail-
 import "./styles.css";
 import styled from "styled-components";
 
-function NavigateCategory() {
+function Categories() {
   return (
     <>
-      <CategoryContainer className="container">
+      <Container className="container" styles={ContainerStyles}>
         <ItemCategory img={headphoneImg} category="headphones" />
         <ItemCategory img={speakerImg} category="speakers" />
         <ItemCategory img={earphoneImg} category="earphones" />
-      </CategoryContainer>
+      </Container>
     </>
   );
 }
 
-export default NavigateCategory;
+export default Categories;
 
-const CategoryContainer = styled.div`
+const ContainerStyles = styled.div`
   height: 284px;
   margin: var(--marginBetweenComponents);
   display: flex;

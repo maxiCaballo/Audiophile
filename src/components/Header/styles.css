@@ -9,9 +9,7 @@ header ul {
 }
 header div:only-child {
   display: flex;
-  align-content: center;
   justify-content: flex-start;
-  padding: 0;
 }
 .cartIcon {
   margin-left: auto;
@@ -53,10 +51,5 @@ header div:only-child {
     line-height: 25px;
     letter-spacing: 2px;
     position: relative;
-  }
-}
-@media only screen and (max-width: 575px) {
-  header > div:first-child {
-    padding: var(--paddingMobile);
   }
 }

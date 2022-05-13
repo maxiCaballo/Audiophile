@@ -11,7 +11,7 @@
   --black: #000000;
   --white: #ffffff;
   --borderTopStyle: 1px solid #474747;
-  --marginBetweenComponents:160px auto;
+  --marginBetweenComponents:120px auto;
   --paddingMobile: 0 24px
 }
 * {
@@ -47,6 +47,14 @@ body {
   line-height: 25px;
   letter-spacing: 1px;
   color: var(--color1);
+}
+.container{
+  padding: 0;
+}
+@media only screen and (max-width: 575px) {
+  .container{
+    padding: var(--paddingMobile);    
+  }
 }
 /* ------ My classes -Start- ------*/
 .centered {
