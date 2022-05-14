@@ -14,6 +14,6 @@ export const StylesButtonLink = styled(Link)`
   color: var(${({ color }) => color});
   &:hover {
     transition: 0.5s;
-    color: ${({ colorHover }) => colorHover};
+    color: ${({ colorhover }) => colorhover};
   }
 `;

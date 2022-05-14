@@ -1,5 +1,4 @@
 //Components
-import Container from "../SmallerComponents/Container/Container";
 import { NavbarLink } from "../SmallerComponents/StyledLink/StyledLink";
 import { Link } from "react-router-dom";
 //Styles
@@ -8,7 +7,7 @@ import "./styles.css";
 function Header() {
   return (
     <header>
-      <Container>
+      <div className="container">
         <div className="centered hamburguerIcon">
           <svg
             width="16"
@@ -57,7 +56,7 @@ function Header() {
             />
           </svg>
         </div>
-      </Container>
+      </div>
     </header>
   );
 }

@@ -7,7 +7,7 @@ export default function LinkButton({ type, content, reference }) {
       <Link
         to={reference}
         color={styleType(type).color}
-        colorHover={styleType(type).colorHover}
+        colorhover={styleType(type).colorhover}
       >
         {content}
       </Link>
@@ -27,8 +27,8 @@ const StyledButton = styled.button`
   color: var(${({ type }) => styleType(type).color});
   border: ${({ type }) => styleType(type).border};
   &:hover {
-    background-color: ${({ type }) => styleType(type).backgroundColorHover};
-    color: ${({ type }) => styleType(type).colorHover};
+    background-color: ${({ type }) => styleType(type).backgroundcolorhover};
+    color: ${({ type }) => styleType(type).colorhover};
   }
 `;
 
@@ -39,8 +39,8 @@ function styleType(type) {
         backgroundColor: "#d87d4a",
         color: "--white",
         border: "none",
-        backgroundColorHover: "#fbaf85;",
-        colorHover: "#fff",
+        backgroundcolorhover: "#fbaf85;",
+        colorhover: "#fff",
         fontWeight: 400,
       };
     case 2:
@@ -48,8 +48,8 @@ function styleType(type) {
         backgroundColor: "#000",
         color: "--white",
         border: "none",
-        backgroundColorHover: "#4c4c4c",
-        colorHover: "#fff",
+        backgroundcolorhover: "#4c4c4c",
+        colorhover: "#fff",
         fontWeight: 400,
       };
     default:
@@ -57,8 +57,8 @@ function styleType(type) {
         backgroundColor: "transparent",
         color: "--black",
         border: "1px solid #000",
-        backgroundColorHover: "#000",
-        colorHover: "#fff",
+        backgroundcolorhover: "#000",
+        colorhover: "#fff",
         fontWeight: 600,
       };
   }

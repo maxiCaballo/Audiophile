@@ -1,6 +1,5 @@
 //Components
 import ItemCategory from "./ItemCategory";
-import Container from "../Container/Container";
 //Images
 import earphoneImg from "../../../assets/shared/desktop/image-category-thumbnail-earphones.png";
 import headphoneImg from "../../../assets/shared/desktop/image-category-thumbnail-headphones.png";
@@ -12,11 +11,11 @@ import styled from "styled-components";
 function Categories() {
   return (
     <>
-      <Container className="container" styles={ContainerStyles}>
+      <ContainerStyles className="container">
         <ItemCategory img={headphoneImg} category="headphones" />
         <ItemCategory img={speakerImg} category="speakers" />
         <ItemCategory img={earphoneImg} category="earphones" />
-      </Container>
+      </ContainerStyles>
     </>
   );
 }

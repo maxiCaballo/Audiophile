@@ -1,5 +1,4 @@
 //Components
-import Container from "../SmallerComponents/Container/Container";
 import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
 import Categories from "../SmallerComponents/Categories/Categories";
 //------------Images------------
@@ -13,6 +12,9 @@ import zx9TabletMobile from "../../assets/home/mobile/image-speaker-zx9.png";
 //Zx7
 import zx7DekstopTablet from "../../assets/home/desktop/image-speaker-zx7.jpg";
 import zx7Mobile from "../../assets/home/mobile/image-speaker-zx7.jpg";
+//Yx1
+import yx1DesktopTablet from "../../assets/home/desktop/image-earphones-yx1.jpg";
+
 //------------Images------------
 //Styles
 import "./styles.css";
@@ -37,7 +39,7 @@ function MainHome() {
         </ImgHero>
       </div>
       <Categories />
-      <Container>
+      <div className="container">
         <Zx9>
           <svg xmlns="http://www.w3.org/2000/svg">
             <g stroke="#FFF" fill="none" fillRule="evenodd" opacity=".202">
@@ -63,8 +65,8 @@ function MainHome() {
             </div>
           </div>
         </Zx9>
-      </Container>
-      <Container>
+      </div>
+      <div className="container">
         <Zx7>
           <div>
             <div>
@@ -73,7 +75,16 @@ function MainHome() {
             </div>
           </div>
         </Zx7>
-      </Container>
+      </div>
+      <Yx1Container className="container">
+        <div>img</div>
+        <div>
+          <div>
+            <h4>YX1 EARPHONES</h4>
+            <LinkButton content="see product" reference={"/"} />
+          </div>
+        </div>
+      </Yx1Container>
     </>
   );
 }
@@ -225,6 +236,51 @@ const Zx7 = styled.div`
       }
     }
     background: url(${zx7Mobile}) bottom / cover no-repeat;
+  }
+`;
+const Yx1Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 11px;
+  & > div {
+    width: 50%;
+    height: 320px;
+    border-radius: 8px;
+    :nth-child(1) {
+      background: url(${yx1DesktopTablet}) center / cover no-repeat;
+    }
+    :nth-child(2) {
+      background-color: var(--color4);
+      display: flex;
+      align-items: center;
+      padding-left: 50px;
+      & > div {
+        height: 118px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+    }
+  }
+  @media only screen and (max-width: 530px) {
+    flex-direction: column;
+    & > div {
+      width: 100%;
+      &:nth-child(2) {
+        justify-content: flex-start;
+        padding-left: 24px;
+        & > div {
+          width: 250px;
+          height: 120px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 370px) {
+    & > div:nth-child(2) > div {
+      width: 220px;
+      height: 150px;
+    }
   }
 `;
 //Images
