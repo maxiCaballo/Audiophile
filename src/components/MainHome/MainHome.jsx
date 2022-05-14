@@ -1,6 +1,7 @@
 //Components
 import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
 import Categories from "../SmallerComponents/Categories/Categories";
+import About from "../SmallerComponents/About/About";
 //------------Images------------
 //X99
 import imageHeroDekstop from "../../assets/home/desktop/image-hero.jpg";
@@ -85,6 +86,7 @@ function MainHome() {
           </div>
         </div>
       </Yx1Container>
+      <About />
     </>
   );
 }
