@@ -20,6 +20,7 @@ const StyledButton = styled.button`
   height: 48px;
   text-transform: uppercase;
   font-size: 1.3rem;
+  font-weight: ${({ type }) => styleType(type).fontWeight};
   letter-spacing: 1px;
   transition: 0.5s;
   background-color: ${({ type }) => styleType(type).backgroundColor};
@@ -40,6 +41,7 @@ function styleType(type) {
         border: "none",
         backgroundColorHover: "#fbaf85;",
         colorHover: "#fff",
+        fontWeight: 400,
       };
     case 2:
       return {
@@ -48,6 +50,7 @@ function styleType(type) {
         border: "none",
         backgroundColorHover: "#4c4c4c",
         colorHover: "#fff",
+        fontWeight: 400,
       };
     default:
       return {
@@ -56,6 +59,7 @@ function styleType(type) {
         border: "1px solid #000",
         backgroundColorHover: "#000",
         colorHover: "#fff",
+        fontWeight: 600,
       };
   }
 }

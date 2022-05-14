@@ -66,10 +66,10 @@ function MainHome() {
       </Container>
       <Container>
         <Zx7>
-          <div className="centered">
+          <div>
             <div>
               <h4> ZX7 SPEAKER</h4>
-              <LinkButton type={2} content="see product" reference={"/"} />
+              <LinkButton content="see product" reference={"/"} />
             </div>
           </div>
         </Zx7>
@@ -194,6 +194,9 @@ const Zx7 = styled.div`
   & > div {
     height: 100%;
     width: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 95px;
     & div {
       display: flex;
       justify-content: space-between;
@@ -204,17 +207,21 @@ const Zx7 = styled.div`
   }
   @media only screen and (min-width: 576px) and (max-width: 991px) {
     background-position: bottom -50px right;
-    & > div div {
-      padding-left: 25px;
+    & > div {
+      padding-left: 63px;
+      & div {
+        width: 165px;
+      }
     }
   }
   @media only screen and (max-width: 575px) {
     & > div {
       width: 100%;
       justify-content: flex-start;
-
+      padding-left: 0px;
       & div {
-        padding-left: 15px;
+        width: 250px;
+        padding-left: 24px;
       }
     }
     background: url(${zx7Mobile}) bottom / cover no-repeat;
