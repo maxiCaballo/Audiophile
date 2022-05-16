@@ -21,7 +21,7 @@ import yx1DesktopTablet from "../../assets/home/desktop/image-earphones-yx1.jpg"
 import "./styles.css";
 import styled from "styled-components";
 
-function MainHome() {
+function Home() {
   return (
     <>
       <div style={{ backgroundColor: "var(--color6)", height: "650px" }}>
@@ -91,7 +91,7 @@ function MainHome() {
   );
 }
 
-export default MainHome;
+export default Home;
 
 const ImgHero = styled.div`
   height: 100%;
