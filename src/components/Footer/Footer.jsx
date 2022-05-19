@@ -43,7 +43,9 @@ function Footer() {
           </p>
         </div>
         <div>
-          <span>Copyright 2021. All Rights Reserved</span>
+          <span>
+            Copyright 2022. All Rights Reserved - Maximiliano Caballo ©
+          </span>
           <div>
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -151,7 +153,7 @@ const FooterComponent = styled.footer`
     @media only screen and (max-width: 575px) {
       padding: 75px 24px 48px;
       & span {
-        left: 24px;
+        left: 20px;
       }
     }
     @media only screen and (max-width: 485px) {
