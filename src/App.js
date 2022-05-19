@@ -1,8 +1,10 @@
 //Pages
 import Home from "./pages/Home";
+import Category from "./pages/Category";
 //Components
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/SmallerComponents/ScrollToTop/ScrollToTop";
 //
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -14,10 +16,12 @@ import "./App.css";
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:category" element={<Category />} />
         </Routes>
       </main>
       <Footer />

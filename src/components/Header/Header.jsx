@@ -37,13 +37,13 @@ function Header() {
               <NavbarLink to="/">HOME</NavbarLink>
             </li>
             <li>
-              <NavbarLink to="/">HEADPHONES</NavbarLink>
+              <NavbarLink to="/headphones">HEADPHONES</NavbarLink>
             </li>
             <li>
-              <NavbarLink to="/">SPEAKERS</NavbarLink>
+              <NavbarLink to="/speakers">SPEAKERS</NavbarLink>
             </li>
             <li>
-              <NavbarLink to="/">EARPHONES</NavbarLink>
+              <NavbarLink to="/earphones">EARPHONES</NavbarLink>
             </li>
           </ul>
         </nav>

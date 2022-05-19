@@ -32,7 +32,6 @@ export default ItemCategory;
 
 const Item = styled.div`
   height: 204px;
-  width: calc(100% / 3);
   background-color: var(--color4);
   border-radius: 8px;
   cursor: pointer;
@@ -100,8 +99,5 @@ const Item = styled.div`
         transform: translateX(13px);
       }
     }
-  }
-  @media only screen and (max-width: 575px) {
-    width: 100%;
   }
 `;

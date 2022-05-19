@@ -1,3 +1,4 @@
+import { CategoriesLink as StyledLink } from "../StyledLink/StyledLink";
 //Components
 import ItemCategory from "./ItemCategory";
 //Images
@@ -12,9 +13,15 @@ function Categories() {
   return (
     <>
       <ContainerStyles className="container">
-        <ItemCategory img={headphoneImg} category="headphones" />
-        <ItemCategory img={speakerImg} category="speakers" />
-        <ItemCategory img={earphoneImg} category="earphones" />
+        <StyledLink to="/headphones">
+          <ItemCategory img={headphoneImg} category="headphones" />
+        </StyledLink>
+        <StyledLink to="/speakers">
+          <ItemCategory img={speakerImg} category="speakers" />
+        </StyledLink>
+        <StyledLink to="/earphones">
+          <ItemCategory img={earphoneImg} category="earphones" />
+        </StyledLink>
       </ContainerStyles>
     </>
   );

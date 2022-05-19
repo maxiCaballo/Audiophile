@@ -17,3 +17,13 @@ export const StylesButtonLink = styled(Link)`
     color: ${({ colorhover }) => colorhover};
   }
 `;
+
+export const CategoriesLink = styled(Link)`
+  text-decoration: none;
+  width: calc(100% / 3);
+  text-decoration: none;
+  color: var(--black);
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
+`;
