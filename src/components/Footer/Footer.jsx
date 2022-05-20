@@ -23,13 +23,13 @@ function Footer() {
                 <NavbarLink to="/">HOME</NavbarLink>
               </li>
               <li>
-                <NavbarLink to="/headphones">HEADPHONES</NavbarLink>
+                <NavbarLink to="/categories/headphones">HEADPHONES</NavbarLink>
               </li>
               <li>
-                <NavbarLink to="/speakers">SPEAKERS</NavbarLink>
+                <NavbarLink to="/categories/speakers">SPEAKERS</NavbarLink>
               </li>
               <li>
-                <NavbarLink to="/earphones">EARPHONES</NavbarLink>
+                <NavbarLink to="/categories/earphones">EARPHONES</NavbarLink>
               </li>
             </ul>
           </nav>

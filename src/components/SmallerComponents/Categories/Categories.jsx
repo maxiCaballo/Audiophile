@@ -13,13 +13,13 @@ function Categories() {
   return (
     <>
       <ContainerStyles className="container">
-        <StyledLink to="/headphones">
+        <StyledLink to="/categories/headphones">
           <ItemCategory img={headphoneImg} category="headphones" />
         </StyledLink>
-        <StyledLink to="/speakers">
+        <StyledLink to="/categories/speakers">
           <ItemCategory img={speakerImg} category="speakers" />
         </StyledLink>
-        <StyledLink to="/earphones">
+        <StyledLink to="/categories/earphones">
           <ItemCategory img={earphoneImg} category="earphones" />
         </StyledLink>
       </ContainerStyles>
