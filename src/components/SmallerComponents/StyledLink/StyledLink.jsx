@@ -9,15 +9,17 @@ export const NavbarLink = styled(Link)`
     color: var(--color1);
   }
 `;
+//ADD TO CART - SEE PRODUCT
 export const StylesButtonLink = styled(Link)`
   text-decoration: none;
+  padding: 14px 28px;
   color: var(${({ color }) => color});
   &:hover {
     transition: 0.5s;
     color: ${({ colorhover }) => colorhover};
   }
 `;
-
+//COMPONENT CATEGORIES
 export const CategoriesLink = styled(Link)`
   text-decoration: none;
   width: calc(100% / 3);

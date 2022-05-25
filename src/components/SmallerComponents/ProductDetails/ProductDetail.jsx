@@ -18,6 +18,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
       key={item.id}
       className="container marginBetweenComponents"
       productPage={productPage}
+      categoryPage={categoryPage}
     >
       <div>
         <img
@@ -48,7 +49,11 @@ export default ProductDetail;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  /*   Esto es para que en la pagina de producto el componente me quede
+  Con los detalles a la derecha y la img a la izquierda y en la pag de 
+  categoria al revés */
+  flex-direction: ${({ categoryPage }) =>
+    categoryPage ? "row-reverse" : "row"};
   gap: 125px;
   //Details
   & > div:nth-child(2) {
