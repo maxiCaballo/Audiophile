@@ -12,7 +12,7 @@ function AddToCart({ price }) {
       <div>
         <div>
           <button onClick={() => setQuantity(quantity - 1)}>-</button>
-          <input type="number" value={quantity} min={0} readOnly />
+          <input type="number" value={quantity} readOnly />
           <button onClick={() => setQuantity(quantity + 1)}>+</button>
         </div>
         <LinkButton type={1} content="add to cart" reference="/" />
@@ -24,7 +24,6 @@ function AddToCart({ price }) {
 export default AddToCart;
 
 const Container = styled.div`
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -70,6 +69,7 @@ const Container = styled.div`
         font-size: 1.3rem;
         font-weight: 700;
         width: 16px;
+        color: #000;
       }
     }
   }

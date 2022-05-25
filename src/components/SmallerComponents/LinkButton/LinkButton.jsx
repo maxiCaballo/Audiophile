@@ -31,7 +31,6 @@ const StyledButton = styled.button`
     color: ${({ type }) => styleType(type).colorhover};
   }
 `;
-
 function styleType(type) {
   switch (type) {
     case 1:

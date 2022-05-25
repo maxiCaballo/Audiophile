@@ -1,27 +1,24 @@
 //Component
 import AddToCart from "./AddToCart";
 import LinkButton from "../LinkButton/LinkButton";
-//Custom hook
-import useWindowWidth from "../../../customs hooks/useWindowWidth";
+import { GetImageProductByWindowWidth } from "../../../Functions - Customs hooks/getImageByWindowWidth";
 //Styles
 import styled from "styled-components";
 
 function ProductDetail({ item, categoryPage, productPage }) {
-  const windowWidth = useWindowWidth();
   let path;
   if (categoryPage) {
-    if (windowWidth >= 769) path = item.categoryImage.desktop;
-    if (windowWidth >= 576 && windowWidth <= 768)
-      path = item.categoryImage.tablet;
-    if (windowWidth <= 575) path = item.categoryImage.mobile;
+    path = GetImageProductByWindowWidth(item, "categoryImage");
   } else {
-    if (windowWidth >= 769) path = item.image.desktop;
-    if (windowWidth >= 576 && windowWidth <= 768) path = item.image.tablet;
-    if (windowWidth <= 575) path = item.image.mobile;
+    path = GetImageProductByWindowWidth(item, "image");
   }
 
   return (
-    <Container key={item.id} className="container marginBetweenComponents">
+    <Container
+      key={item.id}
+      className="container marginBetweenComponents"
+      productPage={productPage}
+    >
       <div>
         <img
           src={require(`../../../${path.slice(2)}`)}
@@ -35,7 +32,11 @@ function ProductDetail({ item, categoryPage, productPage }) {
         <h2>{item.name.toUpperCase()}</h2>
         <p>{item.description}</p>
         {categoryPage && (
-          <LinkButton type={1} content="see product" reference="/" />
+          <LinkButton
+            type={1}
+            content="see product"
+            reference={`/products/${item.id}`}
+          />
         )}
         {productPage && <AddToCart price={item.price} />}
       </div>
@@ -51,7 +52,6 @@ const Container = styled.div`
   gap: 125px;
   //Details
   & > div:nth-child(2) {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -79,10 +79,10 @@ const Container = styled.div`
     flex-direction: column;
     gap: 52px;
     & > div:nth-child(2) {
-      align-items: center;
+      align-items: ${({ productPage }) => (productPage ? "start" : "center")};
       & p,
       h2 {
-        text-align: center;
+        text-align: ${({ productPage }) => (productPage ? "start" : "center")};
       }
     }
   }

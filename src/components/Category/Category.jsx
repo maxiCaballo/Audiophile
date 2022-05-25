@@ -30,8 +30,8 @@ export default function Category() {
             <ProductDetail
               key={item.id}
               item={item}
-              //categoryPage={true}
-              productPage={true}
+              categoryPage={true}
+              productPage={false}
             />
           ))}
 

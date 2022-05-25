@@ -34,7 +34,11 @@ function Home() {
               made for the passionate music enthusiast.
             </p>
             <div>
-              <LinkButton type={1} content="see product" reference="/" />
+              <LinkButton
+                type={1}
+                content="see product"
+                reference="/products/4"
+              />
             </div>
           </div>
         </ImgHero>
@@ -61,7 +65,11 @@ function Home() {
                 deliver truly remarkable sound.
               </p>
               <div>
-                <LinkButton type={2} content="see product" reference="/" />
+                <LinkButton
+                  type={2}
+                  content="see product"
+                  reference="/products/6"
+                />
               </div>
             </div>
           </div>
@@ -72,7 +80,7 @@ function Home() {
           <div>
             <div>
               <h4> ZX7 SPEAKER</h4>
-              <LinkButton content="see product" reference={"/"} />
+              <LinkButton content="see product" reference="/products/5" />
             </div>
           </div>
         </Zx7>
@@ -82,7 +90,7 @@ function Home() {
         <div>
           <div>
             <h4>YX1 EARPHONES</h4>
-            <LinkButton content="see product" reference={"/"} />
+            <LinkButton content="see product" reference="/products/1" />
           </div>
         </div>
       </Yx1Container>
