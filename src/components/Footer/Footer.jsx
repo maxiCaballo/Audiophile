@@ -128,8 +128,10 @@ const FooterComponent = styled.footer`
       }
       & > :nth-child(2) {
         margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
         & svg {
-          margin: 0 15px;
           cursor: pointer;
           &:hover {
             filter: invert(53%) sepia(98%) saturate(312%) hue-rotate(337deg)
@@ -149,14 +151,12 @@ const FooterComponent = styled.footer`
       & > :nth-child(3) p {
         width: 100%;
       }
+      //sdasdf
+      & > :nth-child(4) > :nth-child(2) {
+      }
     }
     @media only screen and (max-width: 575px) {
       padding: 75px 24px 48px;
-      & span {
-        left: 20px;
-      }
-    }
-    @media only screen and (max-width: 485px) {
       display: flex;
       flex-direction: column;
       gap: 48px;

@@ -16,7 +16,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
   return (
     <Container
       key={item.id}
-      className="container marginBetweenComponents"
+      className="container"
       productPage={productPage}
       categoryPage={categoryPage}
     >
@@ -36,7 +36,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
           <LinkButton
             type={1}
             content="see product"
-            reference={`/products/${item.id}`}
+            reference={`/products/${item.slug}`}
           />
         )}
         {productPage && <AddToCart price={item.price} />}
@@ -55,6 +55,8 @@ const Container = styled.div`
   flex-direction: ${({ categoryPage }) =>
     categoryPage ? "row-reverse" : "row"};
   gap: 125px;
+  margin: ${({ categoryPage }) =>
+    categoryPage ? "var(--marginBetweenComponents)" : "82px auto 120px"};
   //Details
   & > div:nth-child(2) {
     display: flex;

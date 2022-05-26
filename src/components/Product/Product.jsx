@@ -8,8 +8,8 @@ import { data } from "../../data";
 import styled from "styled-components";
 
 function Product() {
-  const { id } = useParams();
-  const [product] = data.filter((item) => item.id === Number(id));
+  const { slug } = useParams();
+  const [product] = data.filter((item) => item.slug === slug);
   return (
     <>
       <ProductDetail key={product.id} item={product} productPage={true} />
@@ -45,10 +45,29 @@ const FeaturesItemsContainer = styled.div`
     margin-bottom: 32px;
     text-transform: uppercase;
   }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    & > :nth-child(1) {
+      width: 100%;
+    }
+    & > :nth-child(2) {
+      width: 100%;
+      display: flex;
+    }
+  }
+  @media only screen and (min-width: 450px) and (max-width: 768px) {
+    & > :nth-child(2) {
+      justify-content: space-between;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    & > :nth-child(2) {
+      display: block;
+    }
+  }
 `;
 const Features = styled.div`
-  border: 1px solid black;
-  height: 318px;
+  min-height: 318px;
   width: 60%;
   & p {
     opacity: 50%;
@@ -56,7 +75,6 @@ const Features = styled.div`
 `;
 const Items = styled.div`
   width: 40%;
-  border: 1px solid red;
   & ul {
     list-style: none;
     padding: 0;

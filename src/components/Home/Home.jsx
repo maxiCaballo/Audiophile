@@ -37,7 +37,7 @@ function Home() {
               <LinkButton
                 type={1}
                 content="see product"
-                reference="/products/4"
+                reference="/products/xx99-mark-two-headphones"
               />
             </div>
           </div>
@@ -68,7 +68,7 @@ function Home() {
                 <LinkButton
                   type={2}
                   content="see product"
-                  reference="/products/6"
+                  reference="/products/zx9-speaker"
                 />
               </div>
             </div>
@@ -80,17 +80,23 @@ function Home() {
           <div>
             <div>
               <h4> ZX7 SPEAKER</h4>
-              <LinkButton content="see product" reference="/products/5" />
+              <LinkButton
+                content="see product"
+                reference="/products/zx7-speaker"
+              />
             </div>
           </div>
         </Zx7>
       </div>
       <Yx1Container className="container">
-        <div>img</div>
+        <div></div>
         <div>
           <div>
             <h4>YX1 EARPHONES</h4>
-            <LinkButton content="see product" reference="/products/1" />
+            <LinkButton
+              content="see product"
+              reference="/products/yx1-earphones"
+            />
           </div>
         </div>
       </Yx1Container>
