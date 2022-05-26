@@ -129,7 +129,7 @@ const ImgHero = styled.div`
 `;
 const Zx9 = styled.div`
   background-color: var(--color1);
-  border-radius: 8px;
+  border-radius: var(--cardBorderRadius);
   position: relative;
   height: 560px;
   & svg {
@@ -214,7 +214,7 @@ const Zx9 = styled.div`
 `;
 const Zx7 = styled.div`
   height: 320px;
-  border-radius: 8px;
+  border-radius: var(--cardBorderRadius);
   margin: 48px auto;
   background: url(${zx7DekstopTablet}) bottom -140px right/ cover no-repeat;
   background-color: var(--color1);
@@ -261,7 +261,7 @@ const Yx1Container = styled.div`
   & > div {
     width: 50%;
     height: 320px;
-    border-radius: 8px;
+    border-radius: var(--cardBorderRadius);
     :nth-child(1) {
       background: url(${yx1DesktopTablet}) center / cover no-repeat;
     }

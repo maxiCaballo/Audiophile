@@ -57,6 +57,9 @@ const Container = styled.div`
   gap: 125px;
   margin: ${({ categoryPage }) =>
     categoryPage ? "var(--marginBetweenComponents)" : "82px auto 120px"};
+  & img {
+    border-radius: var(--cardBorderRadius);
+  }
   //Details
   & > div:nth-child(2) {
     display: flex;

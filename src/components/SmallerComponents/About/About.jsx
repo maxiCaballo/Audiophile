@@ -52,7 +52,7 @@ const About = styled.div`
       }
     }
     :nth-child(2) {
-      border-radius: 8px;
+      border-radius: var(--cardBorderRadius);
       background: url(${bestGearDesktop}) center / cover no-repeat;
     }
   }

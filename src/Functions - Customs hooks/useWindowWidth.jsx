@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+//This hooks returns de width of the screen.
 function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {

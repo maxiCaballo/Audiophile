@@ -33,7 +33,7 @@ export default ItemCategory;
 const Item = styled.div`
   height: 204px;
   background-color: var(--color4);
-  border-radius: 8px;
+  border-radius: var(--cardBorderRadius);
   cursor: pointer;
   padding: 0;
   transition: 0.5s;

@@ -3,6 +3,7 @@ import ProductDetail from "../SmallerComponents/ProductDetails/ProductDetail";
 import About from "../SmallerComponents/About/About";
 import Categories from "../SmallerComponents/Categories/Categories";
 //
+import { GetGalleryImageByWindowWidth } from "../../Functions - Customs hooks/getImageByWindowWidth";
 import { useParams } from "react-router-dom";
 import { data } from "../../data";
 import styled from "styled-components";
@@ -10,6 +11,8 @@ import styled from "styled-components";
 function Product() {
   const { slug } = useParams();
   const [product] = data.filter((item) => item.slug === slug);
+  const imagesGallery = GetGalleryImageByWindowWidth(product);
+
   return (
     <>
       <ProductDetail key={product.id} item={product} productPage={true} />
@@ -30,6 +33,25 @@ function Product() {
           </ul>
         </Items>
       </FeaturesItemsContainer>
+      <Gallery className="container">
+        <div>
+          <div
+            style={{
+              background: `url(${imagesGallery.first}) center / cover no-repeat`,
+            }}
+          ></div>
+          <div
+            style={{
+              background: `url(${imagesGallery.second}) center / cover no-repeat`,
+            }}
+          ></div>
+        </div>
+        <div
+          style={{
+            background: `url(${imagesGallery.third}) center / cover no-repeat`,
+          }}
+        ></div>
+      </Gallery>
       <Categories />
       <About />
     </>
@@ -91,6 +113,40 @@ const Items = styled.div`
         color: var(--color1);
         font-weight: 700;
       }
+    }
+  }
+`;
+const Gallery = styled.div`
+  height: 368px;
+  margin-top: var(--marginTopBetweenComponents);
+  display: flex;
+  gap: 30px;
+  & > div {
+    height: 100%;
+    border-radius: var(--cardBorderRadius);
+  }
+  & > :nth-child(1) {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    & > div {
+      height: 50%;
+      border-radius: var(--cardBorderRadius);
+      &:nth-child(1) {
+      }
+    }
+  }
+  & > :nth-child(2) {
+    width: 60%;
+  }
+  @media only screen and (max-width: 575px) {
+    flex-direction: column;
+    gap: 20px;
+    height: 756px;
+    & > :nth-child(1),
+    > :nth-child(2) {
+      width: 100%;
     }
   }
 `;

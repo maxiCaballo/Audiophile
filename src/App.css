@@ -12,7 +12,9 @@
   --white: #ffffff;
   --borderTopStyle: 1px solid #474747;
   --marginBetweenComponents:120px auto;
-  --paddingMobile: 0 24px  
+  --marginTopBetweenComponents: 120px;
+  --paddingMobile: 0 24px;  
+  --cardBorderRadius:8px;
 }
 * {
   padding: 0;
