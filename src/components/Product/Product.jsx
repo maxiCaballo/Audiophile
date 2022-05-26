@@ -117,10 +117,10 @@ const Items = styled.div`
   }
 `;
 const Gallery = styled.div`
-  height: 368px;
+  height: 400px;
   margin-top: var(--marginTopBetweenComponents);
   display: flex;
-  gap: 30px;
+  gap: 20px;
   & > div {
     height: 100%;
     border-radius: var(--cardBorderRadius);
@@ -129,7 +129,7 @@ const Gallery = styled.div`
     width: 40%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     & > div {
       height: 50%;
       border-radius: var(--cardBorderRadius);
@@ -142,7 +142,6 @@ const Gallery = styled.div`
   }
   @media only screen and (max-width: 575px) {
     flex-direction: column;
-    gap: 20px;
     height: 756px;
     & > :nth-child(1),
     > :nth-child(2) {

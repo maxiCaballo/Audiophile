@@ -5,9 +5,11 @@ import useWindowWidth from "./useWindowWidth";
 export function GetImageProductByWindowWidth(product, key) {
   const windowWidth = useWindowWidth();
   let image;
-  if (windowWidth >= 769) image = product[key].desktop;
-  if (windowWidth >= 576 && windowWidth <= 768) image = product[key].tablet;
-  if (windowWidth <= 575) image = product[key].mobile;
+  if (windowWidth >= 769)
+    image = require(`../${product[key].desktop.slice(2)}`);
+  if (windowWidth >= 576 && windowWidth <= 768)
+    image = require(`../${product[key].tablet.slice(2)}`);
+  if (windowWidth <= 575) image = require(`../${product[key].mobile.slice(2)}`);
   return image;
 }
 

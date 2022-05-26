@@ -6,11 +6,11 @@ import { GetImageProductByWindowWidth } from "../../../Functions - Customs hooks
 import styled from "styled-components";
 
 function ProductDetail({ item, categoryPage, productPage }) {
-  let path;
+  let image;
   if (categoryPage) {
-    path = GetImageProductByWindowWidth(item, "categoryImage");
+    image = GetImageProductByWindowWidth(item, "categoryImage");
   } else {
-    path = GetImageProductByWindowWidth(item, "image");
+    image = GetImageProductByWindowWidth(item, "image");
   }
 
   return (
@@ -21,12 +21,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
       categoryPage={categoryPage}
     >
       <div>
-        <img
-          src={require(`../../../${path.slice(2)}`)}
-          alt={item.name}
-          width="100%"
-          height="100%"
-        />
+        <img src={image} alt={item.name} width="100%" height="100%" />
       </div>
       <div>
         {item.new && <span>new product</span>}
