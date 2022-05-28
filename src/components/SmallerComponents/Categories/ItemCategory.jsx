@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-function ItemCategory({ img, category }) {
+function ItemCategory({ img, category, hamburgerMenuStyles }) {
   return (
-    <Item>
+    <Item hamburgerMenuStyles={hamburgerMenuStyles}>
       <div className="centered">
         <img src={img} alt="headphones category" />
       </div>
@@ -31,7 +31,8 @@ function ItemCategory({ img, category }) {
 export default ItemCategory;
 
 const Item = styled.div`
-  height: 204px;
+  height: ${({ hamburgerMenuStyles }) =>
+    hamburgerMenuStyles ? "150px" : "204px"};
   background-color: var(--color4);
   border-radius: var(--cardBorderRadius);
   cursor: pointer;

@@ -1,9 +1,13 @@
-//Component
+//Components
 import ProductDetail from "../SmallerComponents/ProductDetails/ProductDetail";
 import About from "../SmallerComponents/About/About";
 import Categories from "../SmallerComponents/Categories/Categories";
+import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
 //
-import { GetGalleryImageByWindowWidth } from "../../Functions - Customs hooks/getImageByWindowWidth";
+import {
+  GetGalleryImageByWindowWidth,
+  GetOthersProductImageByWindowWidth,
+} from "../../Functions - Customs hooks/getImageByWindowWidth";
 import { useParams } from "react-router-dom";
 import { data } from "../../data";
 import styled from "styled-components";
@@ -52,6 +56,29 @@ function Product() {
           }}
         ></div>
       </Gallery>
+      <OthersProducts className="container">
+        <h3>you may also like</h3>
+        <div>
+          {product.others.map((item) => (
+            <div key={`other-${item.name}`}>
+              <div className="centered">
+                <img
+                  src={GetOthersProductImageByWindowWidth(item)}
+                  alt={item.name}
+                />
+              </div>
+              <h5 className="centered">{item.name}</h5>
+              <div className="centered">
+                <LinkButton
+                  type={1}
+                  content="see product"
+                  reference={`/products/${item.slug}`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </OthersProducts>
       <Categories />
       <About />
     </>
@@ -146,6 +173,60 @@ const Gallery = styled.div`
     & > :nth-child(1),
     > :nth-child(2) {
       width: 100%;
+    }
+  }
+`;
+const OthersProducts = styled.div`
+  margin-top: var(--marginTopBetweenComponents);
+  & > h3 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 64px;
+  }
+  //Product container
+  & > div {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    height: 475px;
+    //Card-products
+    & > div {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      width: calc(100% / 3);
+      //imagen
+      & > :nth-child(1) {
+        border-radius: var(--cardBorderRadius);
+        height: 68%;
+        background-color: var(--color4);
+        & > img {
+          border-radius: var(--cardBorderRadius);
+          width: 100%;
+          height: 100%;
+        }
+      }
+      //Product name
+      & > :nth-child(2) {
+        text-transform: uppercase;
+      }
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    margin-bottom: 160px;
+    & > div {
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+      & > div {
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    & > h3 {
+      font-size: 2.4rem;
     }
   }
 `;

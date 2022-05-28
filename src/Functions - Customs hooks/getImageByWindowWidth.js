@@ -16,7 +16,7 @@ export function GetImageProductByWindowWidth(product, key) {
 //this function returns an object with the images of the product gallery depending on the width of the screen.
 export function GetGalleryImageByWindowWidth(product) {
   const windowWidth = useWindowWidth();
-  let image = {
+  const image = {
     first: "",
     second: "",
     third: "",
@@ -36,6 +36,22 @@ export function GetGalleryImageByWindowWidth(product) {
     image.first = require(`../${product.gallery.first.mobile.slice(2)}`);
     image.second = require(`../${product.gallery.second.mobile.slice(2)}`);
     image.third = require(`../${product.gallery.third.mobile.slice(2)}`);
+  }
+  return image;
+}
+//This function return the image of others product component
+export function GetOthersProductImageByWindowWidth(product) {
+  const windowWidth = useWindowWidth();
+  let image;
+
+  if (windowWidth >= 769) {
+    image = require(`../${product.image.desktop.slice(2)}`);
+  }
+  if (windowWidth >= 576 && windowWidth <= 768) {
+    image = require(`../${product.image.tablet.slice(2)}`);
+  }
+  if (windowWidth <= 991) {
+    image = require(`../${product.image.mobile.slice(2)}`);
   }
   return image;
 }

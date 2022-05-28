@@ -7,14 +7,14 @@
   --color4: #f1f1f1;
   --color5: #fafafa;
   --color6: #191919;
-  --color7:#4c4c4c
+  --color7: #4c4c4c;
   --black: #000000;
   --white: #ffffff;
   --borderTopStyle: 1px solid #474747;
-  --marginBetweenComponents:120px auto;
+  --marginBetweenComponents: 120px auto;
   --marginTopBetweenComponents: 120px;
-  --paddingMobile: 0 24px;  
-  --cardBorderRadius:8px;
+  --paddingMobile: 0 24px;
+  --cardBorderRadius: 8px;
 }
 * {
   padding: 0;
@@ -29,15 +29,14 @@ html {
 }
 body {
   background-color: var(--white);
-  height: 100%;  
+  height: 100%;
 }
 #root {
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
- 
 }
-.marginBetweenComponents{
+.marginBetweenComponents {
   margin: var(--marginBetweenComponents);
 }
 .overline {
@@ -54,12 +53,12 @@ body {
   letter-spacing: 1px;
   color: var(--color1);
 }
-.container{
+.container {
   padding: 0;
 }
 @media only screen and (max-width: 575px) {
-  .container{
-    padding: var(--paddingMobile);    
+  .container {
+    padding: var(--paddingMobile);
   }
 }
 /* ------ My classes -Start- ------*/
@@ -91,7 +90,7 @@ h6 {
 h1 {
   font-size: 5.6rem;
   line-height: 58px;
-  letter-spacing: 2px;  
+  letter-spacing: 2px;
 }
 h2 {
   font-size: 4rem;
@@ -121,6 +120,6 @@ h6 {
 p {
   font-weight: 500;
   font-size: 1.5rem;
-  line-height: 25px;  
+  line-height: 25px;
 }
 /* ------ GLOBAL STYLES ------ */
