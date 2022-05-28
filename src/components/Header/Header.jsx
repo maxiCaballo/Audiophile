@@ -9,9 +9,10 @@ import styled from "styled-components";
 
 function Header() {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
-  if (hamburgerMenu) document.body.style.overflow = "hidden";
+  //Esconde el scroll cuando se abre el menu hamburguesa.
+  if (hamburgerMenu) document.body.style.overflowY = "hidden";
   else {
-    document.body.style.overflow = "scroll";
+    document.body.style.overflowY = "scroll";
   }
 
   return (
