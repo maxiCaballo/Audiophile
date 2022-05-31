@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: false,
+  open: false,
 };
 
 export const hamburgerMenuSlice = createSlice({
@@ -9,13 +9,13 @@ export const hamburgerMenuSlice = createSlice({
   initialState,
   reducers: {
     openMenu: (state) => {
-      state.value = true;
+      state.open = true;
     },
     closeMenu: (state) => {
-      state.value = false;
+      state.open = false;
     },
     toogleMenu: (state) => {
-      state.value = !state.value;
+      state.open = !state.open;
     },
   },
 });

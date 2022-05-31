@@ -61,15 +61,24 @@ const Container = styled.div`
           color: var(--color1);
         }
       }
-      & input[type="number"] {
+      & > input[type="number"] {
         border: none;
         outline: none;
         background-color: var(--color4);
-        text-align: center;
         font-size: 1.3rem;
         font-weight: 700;
         width: 16px;
+        -webkit-appearance: none;
+        overflow: hidden;
+        text-align: center;
         color: #000;
+      }
+      //Delete dfault-arrow from input
+      & input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
       }
     }
   }

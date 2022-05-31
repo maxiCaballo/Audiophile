@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { closeMenu } from "../../../Redux/hamburguerMenuSlice";
+import { closeMenu } from "../../../Redux/hamburgerMenuSlice";
 
 function ItemCategory({ img, category }) {
   const hamburguerMenuOpen = useSelector((state) => state.hamburgerMenu.value);
