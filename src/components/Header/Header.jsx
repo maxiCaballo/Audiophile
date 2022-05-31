@@ -1,30 +1,34 @@
 //Components
 import { NavbarLink } from "../SmallerComponents/StyledLink/StyledLink";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import Categories from "../SmallerComponents/Categories/Categories";
 import { Container as HamburguerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+//
+import { useSelector, useDispatch } from "react-redux";
+import { toogleMenu } from "../../Redux/hamburguerMenuSlice";
 //Styles
 import styled from "styled-components";
 
 function Header() {
-  const [hamburgerMenu, setHamburgerMenu] = useState(false);
+  const hamburgerMenuState = useSelector((state) => state.hamburgerMenu.value);
+  const dispatch = useDispatch();
+
   //Esconde el scroll cuando se abre el menu hamburguesa.
-  if (hamburgerMenu) document.body.style.overflowY = "hidden";
+  if (hamburgerMenuState) document.body.style.overflowY = "hidden";
   else {
     document.body.style.overflowY = "scroll";
   }
 
   return (
     <>
-      <HamburguerMenuContainer visible={hamburgerMenu} type={1}>
-        <Categories hamburgerMenuStyles={hamburgerMenu} />
+      <HamburguerMenuContainer visible={hamburgerMenuState} type={1}>
+        <Categories />
       </HamburguerMenuContainer>
       <HeaderStyles>
         <div className="container">
           <div
             className="centered hamburguerIcon"
-            onClick={() => setHamburgerMenu(!hamburgerMenu)}
+            onClick={() => dispatch(toogleMenu())}
           >
             <svg
               width="16"

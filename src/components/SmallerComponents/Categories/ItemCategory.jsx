@@ -1,8 +1,16 @@
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { closeMenu } from "../../../Redux/hamburguerMenuSlice";
 
-function ItemCategory({ img, category, hamburgerMenuStyles }) {
+function ItemCategory({ img, category }) {
+  const hamburguerMenuOpen = useSelector((state) => state.hamburgerMenu.value);
+  const dispatch = useDispatch();
+
   return (
-    <Item hamburgerMenuStyles={hamburgerMenuStyles}>
+    <Item
+      hamburguerMenuOpen={hamburguerMenuOpen}
+      onClick={() => dispatch(closeMenu())}
+    >
       <div className="centered">
         <img src={img} alt="headphones category" />
       </div>
@@ -31,8 +39,8 @@ function ItemCategory({ img, category, hamburgerMenuStyles }) {
 export default ItemCategory;
 
 const Item = styled.div`
-  height: ${({ hamburgerMenuStyles }) =>
-    hamburgerMenuStyles ? "150px" : "204px"};
+  height: ${({ hamburguerMenuOpen }) =>
+    hamburguerMenuOpen ? "150px" : "204px"};
   background-color: var(--color4);
   border-radius: var(--cardBorderRadius);
   cursor: pointer;
