@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Categories from "../SmallerComponents/Categories/Categories";
 import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
 import { CartContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { toogleMenu } from "../../Redux/hamburgerMenuSlice";
@@ -37,7 +38,19 @@ function Header() {
       </HamburgerMenuContainer>
       <CartContainer visible={cartOpen}>
         <div className="container">
-          <div>Carrito</div>
+          <div>
+            <div>
+              <span>CART (3)</span> <span>Remove all</span>
+            </div>
+            <div>Items</div>
+            <div>
+              <span>total</span>
+              <span>$ price</span>
+            </div>
+            <div>
+              <LinkButton type={1} content="checkout" reference="/" />
+            </div>
+          </div>
         </div>
       </CartContainer>
 
