@@ -34,7 +34,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
             reference={`/products/${item.slug}`}
           />
         )}
-        {productPage && <AddToCart price={item.price} />}
+        {productPage && <AddToCart item={item} />}
       </div>
     </Container>
   );

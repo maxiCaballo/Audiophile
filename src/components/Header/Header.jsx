@@ -3,8 +3,7 @@ import { NavbarLink } from "../SmallerComponents/StyledLink/StyledLink";
 import { Link } from "react-router-dom";
 import Categories from "../SmallerComponents/Categories/Categories";
 import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
-import { CartContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
-import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
+import Cart from "../Cart/Cart";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { toogleMenu } from "../../Redux/hamburgerMenuSlice";
@@ -15,12 +14,12 @@ import useWindowWidth from "../../Functions - Customs hooks/useWindowWidth";
 
 function Header() {
   const hamburgerMenuOpen = useSelector((state) => state.hamburgerMenu.open);
-  const cartOpen = useSelector((state) => state.cart.open);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
 
   //Show the scroll hamburguerMenu and de cart if they are not opened
-  if (hamburgerMenuOpen || cartOpen) {
+  if (hamburgerMenuOpen || cart.open) {
     window.scrollTo(0, 0);
     document.body.style.overflowY = "hidden";
   } else {
@@ -36,24 +35,7 @@ function Header() {
       <HamburgerMenuContainer visible={hamburgerMenuOpen}>
         <Categories />
       </HamburgerMenuContainer>
-      <CartContainer visible={cartOpen}>
-        <div className="container">
-          <div>
-            <div>
-              <span>CART (3)</span> <span>Remove all</span>
-            </div>
-            <div>Items</div>
-            <div>
-              <span>total</span>
-              <span>$ price</span>
-            </div>
-            <div>
-              <LinkButton type={1} content="checkout" reference="/" />
-            </div>
-          </div>
-        </div>
-      </CartContainer>
-
+      <Cart />
       <HeaderStyles>
         <div className="container">
           <div

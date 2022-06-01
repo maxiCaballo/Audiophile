@@ -1,11 +1,15 @@
 import { useState } from "react";
-//Component
-import LinkButton from "../LinkButton/LinkButton";
+import { useSelector, useDispatch } from "react-redux";
+import { addProducts } from "../../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
 
-function AddToCart({ price }) {
+function AddToCart({ item }) {
   const [quantity, setQuantity] = useState(0);
+  const { id, name, slug, price } = item;
+  const dispatch = useDispatch();
+  const cartProducts = useSelector((state) => state.cart.products);
+  console.log(cartProducts);
   return (
     <Container>
       <span>$ {price}</span>
@@ -15,7 +19,22 @@ function AddToCart({ price }) {
           <input type="number" value={quantity} readOnly />
           <button onClick={() => setQuantity(quantity + 1)}>+</button>
         </div>
-        <LinkButton type={1} content="add to cart" reference="/" />
+        <BtnAddToCart
+          onClick={() => {
+            dispatch(
+              addProducts({
+                id,
+                name,
+                slug,
+                quantity,
+                totalPrice: price * quantity,
+              })
+            );
+            setQuantity(0);
+          }}
+        >
+          add to cart
+        </BtnAddToCart>
       </div>
     </Container>
   );
@@ -81,5 +100,21 @@ const Container = styled.div`
         appearance: none;
       }
     }
+  }
+`;
+const BtnAddToCart = styled.button`
+  width: 160px;
+  height: 48px;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  transition: 0.5s;
+  background-color: #d87d4a;
+  color: var(--white);
+  border: none;
+  &:hover {
+    background-color: #fbaf85;
+    color: var(--white);
   }
 `;
