@@ -15,7 +15,7 @@ export default function LinkButton({ type, content, reference }) {
   );
 }
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   width: 160px;
   height: 48px;
   text-transform: uppercase;

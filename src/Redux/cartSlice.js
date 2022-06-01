@@ -11,6 +11,7 @@ const objectStructure = {
   name: "",
   slug: "",
   quantity: 0,
+  unitPrice:0,
   totalPrice: 0,
 };
  */

@@ -1,5 +1,8 @@
+//Components
+import { QuantityContainerStyles as Quantity } from "../InputNumberOfProductsStyles/Quantity";
+//
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProducts } from "../../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
@@ -8,17 +11,16 @@ function AddToCart({ item }) {
   const [quantity, setQuantity] = useState(0);
   const { id, name, slug, price } = item;
   const dispatch = useDispatch();
-  const cartProducts = useSelector((state) => state.cart.products);
-  console.log(cartProducts);
+
   return (
     <Container>
       <span>$ {price}</span>
       <div>
-        <div>
+        <Quantity>
           <button onClick={() => setQuantity(quantity - 1)}>-</button>
           <input type="number" value={quantity} readOnly />
           <button onClick={() => setQuantity(quantity + 1)}>+</button>
-        </div>
+        </Quantity>
         <BtnAddToCart
           onClick={() => {
             dispatch(
@@ -27,6 +29,7 @@ function AddToCart({ item }) {
                 name,
                 slug,
                 quantity,
+                unitPrice: price,
                 totalPrice: price * quantity,
               })
             );
