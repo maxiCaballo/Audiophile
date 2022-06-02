@@ -1,8 +1,9 @@
 //Components
 import { NavbarLink } from "../SmallerComponents/Styles/Link";
 import { Link } from "react-router-dom";
-import Categories from "../SmallerComponents/Categories/Categories";
 import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+import { totalProducts } from "../Cart/Cart";
+import Categories from "../SmallerComponents/Categories/Categories";
 import Cart from "../Cart/Cart";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -36,7 +37,7 @@ function Header() {
         <Categories />
       </HamburgerMenuContainer>
       <Cart />
-      <HeaderStyles>
+      <HeaderStyles totalProducts={totalProducts(cart.products)}>
         <div className="container">
           <div
             className="centered hamburguerIcon"
@@ -115,6 +116,23 @@ const HeaderStyles = styled.header`
   & .cartIcon {
     margin-left: auto;
     cursor: pointer;
+    position: relative;
+    &::after {
+      content: ${({ totalProducts }) =>
+        totalProducts > 0 ? `"${totalProducts}"` : `none`};
+      position: absolute;
+      font-size: 1.2rem;
+      font-weight: 700;
+      top: -20px;
+      left: 5px;
+      background-color: var(--color2);
+      color: var(--black);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
   }
   & .logo {
     padding-left: 39px;

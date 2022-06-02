@@ -2,7 +2,7 @@
 import Quantity from "../SmallerComponents/Quantity/Quantity";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import { removeAllProducts } from "../../Redux/cartSlice";
+import { removeAllProducts, toogleCart } from "../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
 import { defaultStyle } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
@@ -13,9 +13,14 @@ function Cart() {
   const dispatch = useDispatch();
 
   return (
-    <Container visible={cart.open}>
+    <Container
+      visible={cart.open}
+      onClick={() => {
+        dispatch(toogleCart());
+      }}
+    >
       <div className="container">
-        <div>
+        <div onClick={(e) => e.stopPropagation()}>
           <div>
             <span>CART ({totalProducts(cart.products)})</span>{" "}
             <span onClick={() => dispatch(removeAllProducts())}>
@@ -140,10 +145,9 @@ const Items = styled.div`
     }
   }
 `;
-function totalProducts(products) {
+export function totalProducts(products) {
   return products.reduce((acc, { quantity }) => (acc += quantity), 0);
 }
-
 function totalPrice(products) {
   return products
     .reduce((acc, { totalPrice }) => (acc += totalPrice), 0)

@@ -12,23 +12,11 @@ function Quantity({ productId }) {
 
   return (
     <Container className="centered">
-      <button
-        onClick={() => {
-          dispatch(removeQuantity({ ...product }));
-          console.log(product);
-        }}
-      >
+      <button onClick={() => dispatch(removeQuantity({ ...product }))}>
         -
       </button>
       <input type="number" value={product.quantity} readOnly />
-      <button
-        onClick={() => {
-          dispatch(addQuantity({ ...product }));
-          console.log(product);
-        }}
-      >
-        +
-      </button>
+      <button onClick={() => dispatch(addQuantity({ ...product }))}>+</button>
     </Container>
   );
 }

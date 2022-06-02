@@ -14,7 +14,7 @@ function Categories() {
   const hamburguerMenuOpen = useSelector((state) => state.hamburgerMenu.value);
   return (
     <>
-      <ContainerStyles
+      <CategoryContainer
         className={!hamburguerMenuOpen && "container"}
         hamburguerMenuOpen={hamburguerMenuOpen}
       >
@@ -27,14 +27,14 @@ function Categories() {
         <Link to="/categories/earphones">
           <ItemCategory img={earphoneImg} category="earphones" />
         </Link>
-      </ContainerStyles>
+      </CategoryContainer>
     </>
   );
 }
 
 export default Categories;
 
-const ContainerStyles = styled.div`
+export const CategoryContainer = styled.div`
   background-color: ${({ hamburguerMenuOpen }) =>
     hamburguerMenuOpen && "var(--white)"};
   height: ${({ hamburguerMenuOpen }) =>
@@ -53,3 +53,11 @@ const ContainerStyles = styled.div`
     height: 800px;
   }
 `;
+
+/* export const HamburguerContainer = styled(CategoryContainer)`
+background-color: var(--white);
+height: 350px;
+margin: 0 auto;
+align-items: center;
+padding: 80px 24px;
+`; */
