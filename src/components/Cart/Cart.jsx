@@ -1,14 +1,14 @@
-import { defaultStyle } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
-import { useState } from "react";
+//Components
+import Quantity from "../SmallerComponents/Quantity/Quantity";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllProducts } from "../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
-import { QuantityContainerStyles } from "../SmallerComponents/InputNumberOfProductsStyles/Quantity";
+import { defaultStyle } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+import { ButtonCheckout } from "../SmallerComponents/Styles/Button";
 
 function Cart() {
-  const [quantity, setQuantity] = useState(0);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ function Cart() {
           </div>
           {cart.products.length > 0 &&
             cart.products.map((product) => (
-              <Items>
+              <Items key={product.id}>
                 <img
                   src={require(`../../assets/cart/image-${product.slug}.jpg`)}
                   alt={product.name}
@@ -35,11 +35,7 @@ function Cart() {
                   <span>{product.name}</span>
                   <span>$ {product.unitPrice}</span>
                 </div>
-                <Quantity className="centered">
-                  <button onClick={() => setQuantity(quantity - 1)}>-</button>
-                  <input type="number" value={quantity} readOnly />
-                  <button onClick={() => setQuantity(quantity + 1)}>+</button>
-                </Quantity>
+                <Quantity productId={product.id} />
               </Items>
             ))}
           <TotalPrice>
@@ -47,7 +43,7 @@ function Cart() {
             <span>$ {totalPrice(cart.products)}</span>
           </TotalPrice>
           <div>
-            <BtnCheckout>Chekout</BtnCheckout>
+            <ButtonCheckout>Chekout</ButtonCheckout>
           </div>
         </div>
       </div>
@@ -142,26 +138,6 @@ const Items = styled.div`
     & > :nth-child(2) {
       opacity: 50%;
     }
-  }
-`;
-const Quantity = styled(QuantityContainerStyles)`
-  height: 32px;
-`;
-const BtnCheckout = styled.button`
-  width: 100%;
-  height: 48px;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  transition: 0.5s;
-  font-weight: 400;
-  background-color: var(--color1);
-  border: none;
-  color: var(--white);
-  opacity: 100% !important;
-  &:hover {
-    background-color: var(--color2);
-    color: var(--white);
   }
 `;
 function totalProducts(products) {

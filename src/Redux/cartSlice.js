@@ -24,25 +24,45 @@ export const cartSlice = createSlice({
       state.open = !state.open;
     },
     addProducts: (state, action) => {
-      const { id, quantity, totalPrice } = action.payload;
+      const { id, quantity, unitPrice } = action.payload;
       if (action.payload.quantity > 0) {
         const productAlreadyExist = state.products.find(
           (product) => product.id === id
         );
         if (productAlreadyExist) {
           productAlreadyExist.quantity += quantity;
-          productAlreadyExist.totalPrice += totalPrice;
-        } else state.products.push(action.payload);
+          productAlreadyExist.totalPrice += unitPrice * quantity;
+        } else {
+          state.products.push({
+            ...action.payload,
+            totalPrice: unitPrice * quantity,
+          });
+        }
       }
     },
-    /*    changeQuantity:(state,action)=>{
-      const {id : productId,quantity}
-    }, */
+    addQuantity: (state, action) => {
+      const { id: productId } = action.payload;
+      const product = state.products.find(({ id }) => id === productId);
+      product.quantity += 1;
+      product.totalPrice = product.unitPrice * product.quantity;
+    },
+    removeQuantity: (state, action) => {
+      const { id: productId } = action.payload;
+      const product = state.products.find(({ id }) => id === productId);
+      product.quantity > 0 ? (product.quantity -= 1) : (product.quantity = 0);
+      product.totalPrice = product.unitPrice * product.quantity;
+    },
     removeAllProducts: (state) => {
       state.products.length = 0;
     },
   },
 });
 
-export const { toogleCart, addProducts, removeAllProducts } = cartSlice.actions;
+export const {
+  toogleCart,
+  addProducts,
+  removeAllProducts,
+  addQuantity,
+  removeQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;

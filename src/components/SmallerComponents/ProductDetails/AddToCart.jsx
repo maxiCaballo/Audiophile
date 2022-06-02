@@ -1,5 +1,5 @@
 //Components
-import { QuantityContainerStyles as Quantity } from "../InputNumberOfProductsStyles/Quantity";
+import { QuantityContainerStyles as Quantity } from "../Styles/Quantity";
 //
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -31,7 +31,7 @@ function AddToCart({ item }) {
                 slug,
                 quantity,
                 unitPrice: price,
-                totalPrice: price * quantity,
+                totalPrice: 0,
               })
             );
             setQuantity(0);

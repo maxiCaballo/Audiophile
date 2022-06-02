@@ -12,7 +12,6 @@ export function GetImageProductByWindowWidth(product, key) {
   if (windowWidth <= 575) image = require(`../${product[key].mobile.slice(2)}`);
   return image;
 }
-
 //this function returns an object with the images of the product gallery depending on the width of the screen.
 export function GetGalleryImageByWindowWidth(product) {
   const windowWidth = useWindowWidth();
