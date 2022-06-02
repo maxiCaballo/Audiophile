@@ -1,5 +1,5 @@
 //Components
-import { NavbarLink } from "../SmallerComponents/StyledLink/StyledLink";
+import { NavbarLink } from "../SmallerComponents/Styles/Link";
 import { Link } from "react-router-dom";
 import Categories from "../SmallerComponents/Categories/Categories";
 import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";

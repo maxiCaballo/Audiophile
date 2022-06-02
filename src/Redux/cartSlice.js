@@ -35,6 +35,9 @@ export const cartSlice = createSlice({
         } else state.products.push(action.payload);
       }
     },
+    /*    changeQuantity:(state,action)=>{
+      const {id : productId,quantity}
+    }, */
     removeAllProducts: (state) => {
       state.products.length = 0;
     },

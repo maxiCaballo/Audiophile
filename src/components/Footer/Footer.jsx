@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { NavbarLink } from "../SmallerComponents/StyledLink/StyledLink";
+import { NavbarLink } from "../SmallerComponents/Styles/Link";
 import styled from "styled-components";
 
 function Footer() {

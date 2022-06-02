@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addProducts } from "../../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
+import { Button as BtnAddToCart } from "../Styles/Button";
 
 function AddToCart({ item }) {
   const [quantity, setQuantity] = useState(0);
@@ -103,21 +104,5 @@ const Container = styled.div`
         appearance: none;
       }
     }
-  }
-`;
-const BtnAddToCart = styled.button`
-  width: 160px;
-  height: 48px;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  transition: 0.5s;
-  background-color: #d87d4a;
-  color: var(--white);
-  border: none;
-  &:hover {
-    background-color: #fbaf85;
-    color: var(--white);
   }
 `;

@@ -2,7 +2,7 @@
 import ProductDetail from "../SmallerComponents/ProductDetails/ProductDetail";
 import About from "../SmallerComponents/About/About";
 import Categories from "../SmallerComponents/Categories/Categories";
-import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
+import { DefaultLink } from "../SmallerComponents/Styles/Link";
 //
 import {
   GetGalleryImageByWindowWidth,
@@ -69,11 +69,9 @@ function Product() {
               </div>
               <h5 className="centered">{item.name}</h5>
               <div className="centered">
-                <LinkButton
-                  type={1}
-                  content="see product"
-                  reference={`/products/${item.slug}`}
-                />
+                <DefaultLink to={`/products/${item.slug}`}>
+                  see product
+                </DefaultLink>
               </div>
             </div>
           ))}

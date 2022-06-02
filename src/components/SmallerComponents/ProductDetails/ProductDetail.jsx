@@ -1,6 +1,6 @@
 //Component
 import AddToCart from "./AddToCart";
-import LinkButton from "../LinkButton/LinkButton";
+import { DefaultLink } from "../Styles/Link";
 import { GetImageProductByWindowWidth } from "../../../Functions - Customs hooks/getImageByWindowWidth";
 //Styles
 import styled from "styled-components";
@@ -28,11 +28,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
         <h2>{item.name.toUpperCase()}</h2>
         <p>{item.description}</p>
         {categoryPage && (
-          <LinkButton
-            type={1}
-            content="see product"
-            reference={`/products/${item.slug}`}
-          />
+          <DefaultLink to={`/products/${item.slug}`}>see product</DefaultLink>
         )}
         {productPage && <AddToCart item={item} />}
       </div>

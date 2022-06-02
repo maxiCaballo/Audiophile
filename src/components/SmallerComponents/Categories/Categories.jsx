@@ -1,4 +1,4 @@
-import { CategoriesLink as StyledLink } from "../StyledLink/StyledLink";
+import { CategoriesLink as Link } from "../Styles/Link";
 import { useSelector } from "react-redux";
 //Components
 import ItemCategory from "./ItemCategory";
@@ -18,15 +18,15 @@ function Categories() {
         className={!hamburguerMenuOpen && "container"}
         hamburguerMenuOpen={hamburguerMenuOpen}
       >
-        <StyledLink to="/categories/headphones">
+        <Link to="/categories/headphones">
           <ItemCategory img={headphoneImg} category="headphones" />
-        </StyledLink>
-        <StyledLink to="/categories/speakers">
+        </Link>
+        <Link to="/categories/speakers">
           <ItemCategory img={speakerImg} category="speakers" />
-        </StyledLink>
-        <StyledLink to="/categories/earphones">
+        </Link>
+        <Link to="/categories/earphones">
           <ItemCategory img={earphoneImg} category="earphones" />
-        </StyledLink>
+        </Link>
       </ContainerStyles>
     </>
   );

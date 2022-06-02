@@ -1,5 +1,9 @@
 //Components
-import LinkButton from "../SmallerComponents/LinkButton/LinkButton";
+import {
+  DefaultLink,
+  BlackLink,
+  TransparentLink,
+} from "../SmallerComponents/Styles/Link";
 import Categories from "../SmallerComponents/Categories/Categories";
 import About from "../SmallerComponents/About/About";
 //------------Images------------
@@ -34,11 +38,9 @@ function Home() {
               made for the passionate music enthusiast.
             </p>
             <div>
-              <LinkButton
-                type={1}
-                content="see product"
-                reference="/products/xx99-mark-two-headphones"
-              />
+              <DefaultLink to="/products/xx99-mark-two-headphones">
+                See product
+              </DefaultLink>
             </div>
           </div>
         </ImgHero>
@@ -65,11 +67,7 @@ function Home() {
                 deliver truly remarkable sound.
               </p>
               <div>
-                <LinkButton
-                  type={2}
-                  content="see product"
-                  reference="/products/zx9-speaker"
-                />
+                <BlackLink to="/products/zx9-speaker"> See product</BlackLink>
               </div>
             </div>
           </div>
@@ -80,10 +78,9 @@ function Home() {
           <div>
             <div>
               <h4> ZX7 SPEAKER</h4>
-              <LinkButton
-                content="see product"
-                reference="/products/zx7-speaker"
-              />
+              <TransparentLink to="/products/zx7-speaker">
+                see product
+              </TransparentLink>
             </div>
           </div>
         </Zx7>
@@ -93,10 +90,9 @@ function Home() {
         <div>
           <div>
             <h4>YX1 EARPHONES</h4>
-            <LinkButton
-              content="see product"
-              reference="/products/yx1-earphones"
-            />
+            <TransparentLink to="/products/yx1-earphones">
+              See product
+            </TransparentLink>
           </div>
         </div>
       </Yx1Container>
