@@ -8,11 +8,11 @@ export const Button = styled.button`
   font-weight: 400;
   letter-spacing: 1px;
   transition: 0.5s;
-  background-color: #d87d4a;
+  background-color: var(--color1);
   color: var(--white);
   border: none;
   &:hover {
-    background-color: #fbaf85;
+    background-color: var(--color2);
     color: var(--white);
   }
 `;

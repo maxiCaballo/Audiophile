@@ -6,7 +6,7 @@ import { removeAllProducts, toogleCart } from "../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
 import { defaultStyle } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
-import { ButtonCheckout } from "../SmallerComponents/Styles/Button";
+import { DefaultLink } from "../SmallerComponents/Styles/Link";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -29,7 +29,7 @@ function Cart() {
           </div>
           {cart.products.length > 0 &&
             cart.products.map((product) => (
-              <Items key={product.id}>
+              <Product key={product.id}>
                 <img
                   src={require(`../../assets/cart/image-${product.slug}.jpg`)}
                   alt={product.name}
@@ -41,15 +41,15 @@ function Cart() {
                   <span>$ {product.unitPrice}</span>
                 </div>
                 <Quantity productId={product.id} />
-              </Items>
+              </Product>
             ))}
           <TotalPrice>
             <span>total</span>
             <span>$ {totalPrice(cart.products)}</span>
           </TotalPrice>
-          <div>
-            <ButtonCheckout>Chekout</ButtonCheckout>
-          </div>
+          <Checkout onClick={() => dispatch(toogleCart())} to="/checkout">
+            Chekout
+          </Checkout>
         </div>
       </div>
     </Container>
@@ -128,11 +128,14 @@ const TotalPrice = styled.div`
   }
 `;
 
-const Items = styled.div`
+export const Product = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
+  & img {
+    border-radius: var(--cardBorderRadius);
+  }
   & > :nth-child(2) {
     display: flex;
     flex-direction: column;
@@ -145,10 +148,13 @@ const Items = styled.div`
     }
   }
 `;
+const Checkout = styled(DefaultLink)`
+  width: 100%;
+`;
 export function totalProducts(products) {
   return products.reduce((acc, { quantity }) => (acc += quantity), 0);
 }
-function totalPrice(products) {
+export function totalPrice(products) {
   return products
     .reduce((acc, { totalPrice }) => (acc += totalPrice), 0)
     .toFixed(2);

@@ -1,9 +1,30 @@
+//Components
+import { Product, totalPrice } from "../Cart/Cart";
+
+//
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Checkout() {
-  const [creditCard, setCreditCard] = useState(false);
-  const [cashOnDelivery, setCashOnDelivery] = useState(false);
+  const cart = useSelector((state) => state.cart);
+  const [methodCreditCard, setMethodCreditCard] = useState(false);
+  const {
+    register,
+    /* handleSubmit,
+    reset, */
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      creditCardNumber: 123546789,
+      creditCardPin: 123,
+    },
+  });
+  const detailedPrice = grandTotal(totalPrice(cart.products));
+  console.log(detailedPrice);
+  //console.log(detailedPrice);
+
   return (
     <div
       style={{
@@ -19,89 +40,170 @@ function Checkout() {
             <Title>Billing detail</Title>
             <InputsContainer>
               <InputContainer>
-                <Label htmlFor="Name">Name</Label>
-                <Input type="text" />
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  type="text"
+                  id="name"
+                  className={errors.name && "border_error"}
+                  {...register("name", {
+                    required: { value: true, message: "Field required" },
+                    minLength: { value: 2, message: "Min lenght of two" },
+                    maxLength: 50,
+                  })}
+                />
               </InputContainer>
               <InputContainer>
-                <Label htmlFor="Name">Name</Label>
-                <Input type="text" />
+                <Label htmlFor="email">email address</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  className={errors.name && "border_error"}
+                  {...register("email", {
+                    required: { value: true, message: "Field required" },
+                    pattern: {
+                      value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                      message: "You must enter a valid email.",
+                    },
+                  })}
+                />
               </InputContainer>
               <InputContainer>
-                <Label htmlFor="Name">Name</Label>
-                <Input type="text" />
+                <Label htmlFor="phoneNumber">phone number</Label>
+                <Input
+                  type="number"
+                  id="phoneNumber"
+                  {...register("phoneNumber")}
+                />
               </InputContainer>
             </InputsContainer>
             <Title>Shipping info</Title>
             <InputsContainer>
               <InputContainer className="w-100">
-                <Label htmlFor="Name">address</Label>
-                <Input type="number" />
+                <Label htmlFor="address">address</Label>
+                <Input
+                  type="text"
+                  id="address"
+                  {...register("address", {
+                    required: { value: true, message: "Field required" },
+                  })}
+                />
               </InputContainer>
               <InputContainer>
-                <Label htmlFor="Name">zip code</Label>
-                <Input type="number" />
+                <Label htmlFor="zipCode">zip code</Label>
+                <Input type="number" id="zipCode" {...register("zipCode")} />
               </InputContainer>
               <InputContainer>
-                <Label htmlFor="Name">City</Label>
-                <Input type="text" />
+                <Label htmlFor="city">City</Label>
+                <Input
+                  type="text"
+                  id="city"
+                  {...register("city", {
+                    required: { value: true, message: "Field required" },
+                  })}
+                />
               </InputContainer>
               <InputContainer>
-                <Label htmlFor="Name">country</Label>
-                <Input type="text" />
+                <Label htmlFor="country">country</Label>
+                <Input
+                  type="text"
+                  id="country"
+                  {...register("country", {
+                    required: { value: true, message: "Field required" },
+                  })}
+                />
               </InputContainer>
             </InputsContainer>
             <Title>payment details</Title>
             <PaymentsDetails>
-              <CheckBoxContainer creditCard={creditCard}>
-                <Label
-                  htmlFor="creditCard"
-                  className="centered"
-                  onClick={() => {
-                    setCreditCard(!creditCard);
-                    console.log(creditCard);
-                  }}
-                >
-                  <span></span>
-                  credit card
-                </Label>
-              </CheckBoxContainer>
-              <CheckBoxContainer cashOnDelivery={cashOnDelivery}>
-                <Label
-                  htmlFor="cashOnDelivery"
-                  className="centered"
-                  onClick={() => {
-                    setCashOnDelivery(!cashOnDelivery);
-                    console.log(cashOnDelivery);
-                  }}
-                >
-                  <span
-                    style={{
-                      ":after": {
-                        transform: cashOnDelivery ? "scale(1)" : "scale(0)",
-                      },
-                    }}
-                  ></span>
-                  Cash on delivery
-                </Label>
-              </CheckBoxContainer>
-              <InputContainer>
-                <Input
-                  type="radio"
-                  id="cashOnDelivery"
-                  value="cash on delivery"
-                  name="cash on delivery"
-                />
-                <Label htmlFor="Name">City</Label>
-                <Input type="text" />
-              </InputContainer>
-              <InputContainer>
-                <Label htmlFor="Name">country</Label>
-                <Input type="text" />
-              </InputContainer>
+              <span>Payment Method</span>
+              <div className="w-100">
+                <CheckBoxContainer>
+                  <Label
+                    htmlFor="creditCard"
+                    className="centered"
+                    {...register("creditCard")}
+                  >
+                    <Input
+                      type="radio"
+                      id="creditCard"
+                      name="payment"
+                      value="credit_card"
+                      {...register("paymentMethod", {
+                        required: { value: true, message: "Field required" },
+                      })}
+                      onChange={() => setMethodCreditCard(true)}
+                    />
+                    <span></span>
+                    credit card
+                  </Label>
+                </CheckBoxContainer>
+                <CheckBoxContainer>
+                  <Label htmlFor="cashOnDelivery" className="centered">
+                    <Input
+                      type="radio"
+                      id="cashOnDelivery"
+                      value="cash_on_delivery"
+                      name="payment"
+                      {...register("paymentMethod", {
+                        required: { value: true, message: "Field required" },
+                      })}
+                      onChange={() => setMethodCreditCard(false)}
+                    />
+                    <span></span>
+                    Cash on delivery
+                  </Label>
+                </CheckBoxContainer>
+              </div>
+              {methodCreditCard && (
+                <>
+                  <InputContainer>
+                    <Label htmlFor="creditCardNumber">Credit card number</Label>
+                    <Input
+                      type="number"
+                      id="creditCardNumber"
+                      readOnly
+                      {...register("creditCardNumber")}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label htmlFor="creditCardPin">credit card pin</Label>
+                    <Input
+                      type="number"
+                      readOnly
+                      {...register("creditCardPin")}
+                    />
+                  </InputContainer>
+                </>
+              )}
             </PaymentsDetails>
           </form>
         </div>
-        <Summary>hola</Summary>
+        <Summary>
+          <h6>summary</h6>
+          <div>
+            {cart.products.length > 0 &&
+              cart.products.map((product) => (
+                <ProductCheckout key={product.id}>
+                  <img
+                    src={require(`../../assets/cart/image-${product.slug}.jpg`)}
+                    alt={product.name}
+                    height={70}
+                    width={70}
+                  />
+                  <div>
+                    <span>{product.name}</span>
+                    <span>$ {product.unitPrice}</span>
+                  </div>
+                  <div>x{product.quantity}</div>
+                </ProductCheckout>
+              ))}
+          </div>
+          <PriceDetail>
+            <div>
+              <span></span>
+            </div>
+          </PriceDetail>
+        </Summary>
       </Container>
     </div>
   );
@@ -175,25 +277,55 @@ const Summary = styled.div`
   height: 100%;
   width: 350px;
   height: 612px;
+  padding: 33px;
+  & > h6 {
+    text-transform: uppercase;
+  }
+  & > :nth-child(2) {
+    margin: 31px 0;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+  }
 `;
-const PaymentsDetails = styled(InputsContainer)``;
+const ProductCheckout = styled(Product)`
+  & > :nth-child(3) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    opacity: 50%;
+    margin-left: auto;
+  }
+`;
+const PriceDetail = styled.div``;
+const PaymentsDetails = styled(InputsContainer)`
+  & > :nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: start;
+    text-transform: capitalize;
+  }
+  & > :nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+`;
 const CheckBoxContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 9px;
-  width: calc(50% - 16px);
-  border: 1px solid #cfcfcf;
-  border-radius: 8px;
-  padding: 23px;
-  align-items: center;
   & label {
     cursor: pointer;
+    padding: 20px;
     gap: 8px;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+    display: flex;
+    justify-content: start;
+    width: calc(50% - 16px);
+    opacity: 100%;
   }
   & input {
     display: none;
     &:checked ~ span::after {
-      transform: scale(0);
+      transform: scale(1);
     }
   }
   & span {
@@ -211,8 +343,20 @@ const CheckBoxContainer = styled.div`
       background: var(--color1);
       display: block;
       border-radius: 50%;
-      transform: scale(1);
+      transform: scale(0);
       transition: 300ms ease-in-out 0s;
     }
   }
 `;
+
+function grandTotal(total) {
+  const shipping = 50;
+  const iva = ((total * 22) / 100).toFixed(2);
+  const grandTotal = total + shipping + iva;
+  return {
+    total,
+    shipping,
+    iva,
+    grandTotal,
+  };
+}
