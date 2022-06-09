@@ -10,7 +10,7 @@ import { Button as BtnAddToCart } from "../Styles/Button";
 
 function AddToCart({ item }) {
   const [quantity, setQuantity] = useState(0);
-  const { id, name, slug, price } = item;
+  const { id, name, slug, price, shortName } = item;
   const dispatch = useDispatch();
 
   return (
@@ -28,6 +28,7 @@ function AddToCart({ item }) {
               addProducts({
                 id,
                 name,
+                shortName,
                 slug,
                 quantity,
                 unitPrice: price,

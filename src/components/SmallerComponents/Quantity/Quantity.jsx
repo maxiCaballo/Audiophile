@@ -1,9 +1,9 @@
 //Redux
 import { addQuantity, removeQuantity } from "../../../Redux/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
 //Styles
 import { QuantityContainerStyles } from "../Styles/Quantity";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 
 function Quantity({ productId }) {
   const cartProducts = useSelector((state) => state.cart.products);

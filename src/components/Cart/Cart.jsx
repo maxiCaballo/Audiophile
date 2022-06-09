@@ -32,12 +32,12 @@ function Cart() {
               <Product key={product.id}>
                 <img
                   src={require(`../../assets/cart/image-${product.slug}.jpg`)}
-                  alt={product.name}
+                  alt={product.shortName}
                   height={70}
                   width={70}
                 />
                 <div>
-                  <span>{product.name}</span>
+                  <span>{product.shortName}</span>
                   <span>$ {product.unitPrice}</span>
                 </div>
                 <Quantity productId={product.id} />
@@ -155,7 +155,8 @@ export function totalProducts(products) {
   return products.reduce((acc, { quantity }) => (acc += quantity), 0);
 }
 export function totalPrice(products) {
-  return products
-    .reduce((acc, { totalPrice }) => (acc += totalPrice), 0)
-    .toFixed(2);
+  const totalPrice = Number(
+    products.reduce((acc, { totalPrice }) => (acc += totalPrice), 0).toFixed(2)
+  );
+  return totalPrice;
 }

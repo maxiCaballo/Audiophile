@@ -9,6 +9,7 @@ const initialState = {
 const objectStructure = {
   id: 0,
   name: "",
+  shortName:"",
   slug: "",
   quantity: 0,
   unitPrice:0,

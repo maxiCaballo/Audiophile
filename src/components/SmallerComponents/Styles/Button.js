@@ -16,6 +16,6 @@ export const Button = styled.button`
     color: var(--white);
   }
 `;
-export const ButtonCheckout = styled(Button)`
+export const SummaryButton = styled(Button)`
   width: 100%;
 `;

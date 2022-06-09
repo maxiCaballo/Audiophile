@@ -1,5 +1,6 @@
 //Components
 import { Product, totalPrice } from "../Cart/Cart";
+import { SummaryButton } from "../SmallerComponents/Styles/Button";
 
 //
 import styled from "styled-components";
@@ -22,14 +23,10 @@ function Checkout() {
     },
   });
   const detailedPrice = grandTotal(totalPrice(cart.products));
-  console.log(detailedPrice);
-  //console.log(detailedPrice);
-
   return (
     <div
       style={{
         backgroundColor: "var(--color4)",
-        height: "100%",
         padding: "120px 0",
       }}
     >
@@ -191,7 +188,7 @@ function Checkout() {
                     width={70}
                   />
                   <div>
-                    <span>{product.name}</span>
+                    <span>{product.shortName}</span>
                     <span>$ {product.unitPrice}</span>
                   </div>
                   <div>x{product.quantity}</div>
@@ -200,9 +197,23 @@ function Checkout() {
           </div>
           <PriceDetail>
             <div>
-              <span></span>
+              <span>total</span>
+              <span>{detailedPrice.total}</span>
+            </div>
+            <div>
+              <span>shipping</span>
+              <span>{detailedPrice.shipping}</span>
+            </div>
+            <div>
+              <span>iva (included)</span>
+              <span>{detailedPrice.iva}</span>
+            </div>
+            <div>
+              <span>grand total</span>
+              <span>{detailedPrice.grandTotal}</span>
             </div>
           </PriceDetail>
+          <SummaryButton>continue {"&"} pay</SummaryButton>
         </Summary>
       </Container>
     </div>
@@ -212,18 +223,18 @@ function Checkout() {
 export default Checkout;
 
 const Container = styled.div`
-  background-color: var(--color4);
-  display: flex;
+  display: grid;
+  grid-template-columns: calc(68% - 30px) 32%;
+  border: 1px solid black;
   gap: 30px;
-  height: 100%;
+  background-color: var(--color4);
   & > div {
     border-radius: var(--cardBorderRadius);
     background-color: var(--white);
   }
+  //Form
   & > div:nth-child(1) {
-    height: 100%;
     padding: 48px;
-    width: calc(100% - 380px);
     border-radius: var(--cardBorderRadius);
   }
   & h3 {
@@ -274,15 +285,16 @@ const Input = styled.input`
   }
 `;
 const Summary = styled.div`
-  height: 100%;
-  width: 350px;
-  height: 612px;
+  height: min-content;
   padding: 33px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  gap: 31px;
   & > h6 {
     text-transform: uppercase;
   }
   & > :nth-child(2) {
-    margin: 31px 0;
     display: flex;
     gap: 24px;
     flex-direction: column;
@@ -296,7 +308,32 @@ const ProductCheckout = styled(Product)`
     margin-left: auto;
   }
 `;
-const PriceDetail = styled.div``;
+const PriceDetail = styled.div`
+  & > div {
+    display: flex;
+    font-size: 1.7rem;
+    & > span:nth-child(1) {
+      opacity: 50%;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    & > span:nth-child(2) {
+      font-weight: 700;
+      margin-left: auto;
+      &::before {
+        content: "$";
+        margin-right: 3px;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  & > div:nth-child(4) {
+    margin-top: 24px;
+    & span:nth-child(2) {
+      color: var(--color1);
+    }
+  }
+`;
 const PaymentsDetails = styled(InputsContainer)`
   & > :nth-child(1) {
     font-size: 1.2rem;
@@ -351,8 +388,8 @@ const CheckBoxContainer = styled.div`
 
 function grandTotal(total) {
   const shipping = 50;
-  const iva = ((total * 22) / 100).toFixed(2);
-  const grandTotal = total + shipping + iva;
+  const iva = Number(((total * 22) / 100).toFixed(2));
+  const grandTotal = total + shipping;
   return {
     total,
     shipping,
