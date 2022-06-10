@@ -1,5 +1,9 @@
 //Redux
-import { addQuantity, removeQuantity } from "../../../Redux/cartSlice";
+import {
+  addOne,
+  substractOne,
+  removeOneProduct,
+} from "../../../Redux/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 //Styles
 import { QuantityContainerStyles } from "../Styles/Quantity";
@@ -8,15 +12,24 @@ import styled from "styled-components";
 function Quantity({ productId }) {
   const cartProducts = useSelector((state) => state.cart.products);
   const product = cartProducts.find((item) => item.id === productId);
+  const { quantity } = product;
   const dispatch = useDispatch();
+  function handleRemove() {
+    dispatch(removeOneProduct({ productId, quantity }));
+  }
 
   return (
     <Container className="centered">
-      <button onClick={() => dispatch(removeQuantity({ ...product }))}>
+      <button
+        onClick={() => {
+          dispatch(substractOne({ ...product }));
+          handleRemove();
+        }}
+      >
         -
       </button>
       <input type="number" value={product.quantity} readOnly />
-      <button onClick={() => dispatch(addQuantity({ ...product }))}>+</button>
+      <button onClick={() => dispatch(addOne({ ...product }))}>+</button>
     </Container>
   );
 }

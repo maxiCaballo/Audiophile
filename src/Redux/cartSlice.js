@@ -41,13 +41,13 @@ export const cartSlice = createSlice({
         }
       }
     },
-    addQuantity: (state, action) => {
+    addOne: (state, action) => {
       const { id: productId } = action.payload;
       const product = state.products.find(({ id }) => id === productId);
       product.quantity += 1;
       product.totalPrice = product.unitPrice * product.quantity;
     },
-    removeQuantity: (state, action) => {
+    substractOne: (state, action) => {
       const { id: productId } = action.payload;
       const product = state.products.find(({ id }) => id === productId);
       product.quantity > 0 ? (product.quantity -= 1) : (product.quantity = 0);
@@ -56,6 +56,12 @@ export const cartSlice = createSlice({
     removeAllProducts: (state) => {
       state.products.length = 0;
     },
+    removeOneProduct: (state, action) => {
+      const { productId, quantity } = action.payload;
+      if (quantity === 1) {
+        state.products = state.products.filter((item) => item.id !== productId);
+      }
+    },
   },
 });
 
@@ -63,7 +69,8 @@ export const {
   toogleCart,
   addProducts,
   removeAllProducts,
-  addQuantity,
-  removeQuantity,
+  addOne,
+  substractOne,
+  removeOneProduct,
 } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -225,7 +225,6 @@ export default Checkout;
 const Container = styled.div`
   display: grid;
   grid-template-columns: calc(68% - 30px) 32%;
-  border: 1px solid black;
   gap: 30px;
   background-color: var(--color4);
   & > div {
@@ -236,11 +235,20 @@ const Container = styled.div`
   & > div:nth-child(1) {
     padding: 48px;
     border-radius: var(--cardBorderRadius);
+    & input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
   }
   & h3 {
     text-transform: uppercase;
     text-align: left;
     margin-bottom: 41px;
+  }
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 100%;
   }
 `;
 const Title = styled.span`
@@ -264,6 +272,9 @@ const InputContainer = styled.div`
   flex-direction: column;
   gap: 9px;
   width: calc(50% - 16px);
+  @media only screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
 const Label = styled.label`
   font-size: 1.2rem;
@@ -280,6 +291,7 @@ const Input = styled.input`
   font-weight: 700;
   color: var(--black);
   opacity: 40%;
+  height: 56px;
   &:focus {
     border-color: var(--color1);
   }
@@ -311,7 +323,7 @@ const ProductCheckout = styled(Product)`
 const PriceDetail = styled.div`
   & > div {
     display: flex;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     & > span:nth-child(1) {
       opacity: 50%;
       text-transform: uppercase;
@@ -323,7 +335,6 @@ const PriceDetail = styled.div`
       &::before {
         content: "$";
         margin-right: 3px;
-        font-size: 1.5rem;
       }
     }
   }
@@ -358,6 +369,9 @@ const CheckBoxContainer = styled.div`
     justify-content: start;
     width: calc(50% - 16px);
     opacity: 100%;
+    @media only screen and (max-width: 550px) {
+      width: 100%;
+    }
   }
   & input {
     display: none;
@@ -387,7 +401,7 @@ const CheckBoxContainer = styled.div`
 `;
 
 function grandTotal(total) {
-  const shipping = 50;
+  const shipping = total && 50;
   const iva = Number(((total * 22) / 100).toFixed(2));
   const grandTotal = total + shipping;
   return {
