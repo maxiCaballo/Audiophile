@@ -110,6 +110,11 @@ const Container = styled(defaultStyle)`
         }
       }
     }
+    @media only screen and (max-width: 767px) {
+      & > div {
+        width: 100%;
+      }
+    }
   }
 `;
 const TotalPrice = styled.div`
