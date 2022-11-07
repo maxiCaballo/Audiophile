@@ -22,7 +22,7 @@ function Cart() {
       <div className="container">
         <div onClick={(e) => e.stopPropagation()}>
           <div>
-            <span>CART ({totalProducts(cart.products)})</span>{" "}
+            <span>CART ({totalProducts(cart.products)})</span>{" "}          
             <span onClick={() => dispatch(removeAllProducts())}>
               Remove all
             </span>
