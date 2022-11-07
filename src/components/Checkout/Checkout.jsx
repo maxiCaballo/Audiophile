@@ -2,20 +2,19 @@
 import { Product, totalPrice } from "../Cart/Cart";
 import { SummaryButton } from "../SmallerComponents/Styles/Button";
 
-//
+//Hooks-redux-Styles
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function Checkout() {
   const cart = useSelector((state) => state.cart);
-  const [method, setMethod] = useState("");
   const {
     register,
     /* handleSubmit,
     reset, */
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       creditCardNumber: 123546789,
@@ -23,6 +22,7 @@ function Checkout() {
     },
   });
   const detailedPrice = grandTotal(totalPrice(cart.products));
+
   return (
     <div
       style={{
@@ -128,14 +128,17 @@ function Checkout() {
                       {...register("paymentMethod", {
                         required: { value: true, message: "Field required" },
                       })}
-                      onChange={(e) => setMethod(e.target.value)}
                     />
                     <span></span>
                     credit card
                   </Label>
                 </CheckBoxContainer>
                 <CheckBoxContainer>
-                  <Label htmlFor="cashOnDelivery" className="centered">
+                  <Label
+                    htmlFor="cashOnDelivery"
+                    className="centered"
+                    {...register("creditCard")}
+                  >
                     <Input
                       type="radio"
                       id="cashOnDelivery"
@@ -144,14 +147,13 @@ function Checkout() {
                       {...register("paymentMethod", {
                         required: { value: true, message: "Field required" },
                       })}
-                      onChange={(e) => setMethod(e.target.value)}
                     />
                     <span></span>
                     Cash on delivery
                   </Label>
                 </CheckBoxContainer>
               </div>
-              {method === "credit_card" && (
+              {watch("paymentMethod") === "credit_card" && (
                 <>
                   <InputContainer>
                     <Label htmlFor="creditCardNumber">Credit card number</Label>
@@ -172,7 +174,7 @@ function Checkout() {
                   </InputContainer>
                 </>
               )}
-              {method === "cash_on_delivery" && (
+              {watch("paymentMethod") === "cash_on_delivery" && (
                 <>
                   <CashOnDeliveryInfo>
                     <svg xmlns="http://www.w3.org/2000/svg">
@@ -231,7 +233,7 @@ function Checkout() {
               <span>{detailedPrice.grandTotal}</span>
             </div>
           </PriceDetail>
-          <SummaryButton>continue {"&"} pay</SummaryButton>
+          <SummaryButton type="submit">continue {"&"} pay</SummaryButton>
         </Summary>
       </Container>
     </div>
@@ -424,7 +426,6 @@ const CashOnDeliveryInfo = styled.div`
   display: flex;
   gap: 32px;
   align-items: center;
-
   & p {
     padding: 0;
     margin: 0;
