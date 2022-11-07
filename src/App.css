@@ -78,9 +78,7 @@ body {
 .image_centered {
   background-position: center center / cover no-repeat;
 }
-.border_error {
-  border: 1px solid red;
-}
+
 /*------ My classes -End- ------*/
 h1,
 h2,
