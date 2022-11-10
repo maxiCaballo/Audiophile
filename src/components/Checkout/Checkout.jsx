@@ -50,6 +50,8 @@ function Checkout() {
                     </Label>
 
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="text"
                       id="name"
                       error={errors.name}
@@ -66,6 +68,8 @@ function Checkout() {
                       {errors.email && <span>{errors.email.message}</span>}
                     </Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="email"
                       id="email"
                       error={errors.email}
@@ -86,6 +90,8 @@ function Checkout() {
                       )}
                     </Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="number"
                       id="phoneNumber"
                       error={errors.phoneNumber}
@@ -99,12 +105,14 @@ function Checkout() {
               <fieldset>
                 <Title>Shipping info</Title>
                 <InputsContainer>
-                  <InputContainer className="w-100">
+                  <InputContainer>
                     <Label htmlFor="address">
                       address{" "}
                       {errors.name && <span>{errors.address.message}</span>}
                     </Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="text"
                       id="address"
                       error={errors.address}
@@ -116,6 +124,8 @@ function Checkout() {
                   <InputContainer>
                     <Label htmlFor="zipCode">zip code</Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="number"
                       id="zipCode"
                       {...register("zipCode")}
@@ -126,6 +136,8 @@ function Checkout() {
                       City {errors.name && <span>{errors.city.message}</span>}{" "}
                     </Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="text"
                       id="city"
                       error={errors.city}
@@ -140,6 +152,8 @@ function Checkout() {
                       {errors.name && <span>{errors.country.message}</span>}{" "}
                     </Label>
                     <Input
+                      cartOpen={cart.open}
+                      orderConfirmationOpen={showOrderConfirmation}
                       type="text"
                       id="country"
                       error={errors.country}
@@ -309,6 +323,8 @@ function Checkout() {
       {showOrderConfirmation && (
         <OrderConfirmation
           setShowOrderConfirmation={setShowOrderConfirmation}
+          showOrderConfirmation={showOrderConfirmation}
+          grandTotal={detailedPrice.grandTotal}
         />
       )}
     </>
@@ -397,6 +413,10 @@ const Input = styled.input`
   height: 56px;
   &:focus {
     border-color: var(--color1);
+  }
+  @media only screen and (max-width: 366px) {
+    padding: ${({ cartOpen, orderConfirmationOpen }) =>
+      cartOpen || orderConfirmationOpen ? "0" : "18px 24px"};
   }
 `;
 const Summary = styled.div`
