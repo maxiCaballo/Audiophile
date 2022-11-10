@@ -19,18 +19,19 @@ function Header() {
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
 
-  //Show the scroll hamburguerMenu and de cart if they are not opened
-  if (hamburgerMenuOpen || cart.open) {
-    window.scrollTo(0, 0);
-    document.body.style.overflowY = "hidden";
-  } else {
-    document.body.style.overflowY = "scroll";
+  const main = document.querySelector("Main");
+  const footer = document.querySelector("Footer");
+
+  if (hamburgerMenuOpen) {
+    main.style.display = "none";
+    footer.style.display = "none";
   }
-  //If the hamburguerMenu is open and de windowWidth >= 800 show de scroll.
-  if (hamburgerMenuOpen && windowWidth >= 800) {
-    document.body.style.overflowY = "scroll";
+  if (!hamburgerMenuOpen || windowWidth >= 800) {
+    main.style.display = "block";
+    footer.style.display = "block";
   }
 
+  //Hacer que no puedan estar abierto el menu y el carrito a la vez.
   return (
     <>
       <HamburgerMenuContainer visible={hamburgerMenuOpen}>

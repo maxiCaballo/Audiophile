@@ -50,14 +50,7 @@ export const CategoryContainer = styled.div`
   @media only screen and (max-width: 575px) {
     flex-direction: column;
     align-items: center;
-    height: 800px;
+    height: 900px;
+    padding-bottom: 45px;
   }
 `;
-
-/* export const HamburguerContainer = styled(CategoryContainer)`
-background-color: var(--white);
-height: 350px;
-margin: 0 auto;
-align-items: center;
-padding: 80px 24px;
-`; */
