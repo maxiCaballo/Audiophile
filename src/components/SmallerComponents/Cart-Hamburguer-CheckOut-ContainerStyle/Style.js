@@ -13,7 +13,6 @@ export const defaultStyle = styled.div`
 
 export const HamburgerMenuContainer = styled(defaultStyle)`
   background-color: var(--white);
-
   @media only screen and (min-width: 800px) {
     display: none;
   }
