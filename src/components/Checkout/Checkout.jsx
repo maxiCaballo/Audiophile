@@ -1,7 +1,7 @@
 //Components
 import { Product, totalPrice } from "../Cart/Cart";
 import { SummaryButton } from "../SmallerComponents/Styles/Button";
-import OrderConfirmation from "./OrderConfirmation";
+import OrderConfirmation from "./OrderConfirmation/OrderConfirmation";
 //Hooks-redux-Styles
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
