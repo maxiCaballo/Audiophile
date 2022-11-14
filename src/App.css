@@ -24,14 +24,17 @@
 }
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 body {
   background-color: var(--white);
+  height: 100%;
 }
 #root {
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
+  height: 100%;
 }
 .marginBetweenComponents {
   margin: var(--marginBetweenComponents);
@@ -120,4 +123,5 @@ p {
   font-size: 1.5rem;
   line-height: 25px;
 }
+
 /* ------ GLOBAL STYLES ------ */

@@ -17,6 +17,8 @@ function OrderConfirmation({
   const [viewMoreButton, setViewMoreButton] = useState(true);
   const cart = useSelector((state) => state.cart);
 
+  window.scrollTo(0, 0);
+
   return (
     <OrderConfirmationStyles
       visible={showOrderConfirmation}

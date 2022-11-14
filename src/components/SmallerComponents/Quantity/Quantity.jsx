@@ -38,4 +38,8 @@ export default Quantity;
 
 const Container = styled(QuantityContainerStyles)`
   height: 32px;
+  @media only screen and (max-width: 390px) {
+    padding: 8px;
+    width: 80px;
+  }
 `;

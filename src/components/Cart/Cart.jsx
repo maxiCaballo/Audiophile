@@ -152,6 +152,15 @@ export const Product = styled.div`
       opacity: 50%;
     }
   }
+  @media only screen and (max-width: 390px) {
+    & > :nth-child(2) {
+      font-size: 1.2rem;
+    }
+    & img {
+      height: 50px;
+      width: 50px;
+    }
+  }
 `;
 const Checkout = styled(DefaultLink)`
   width: 100%;

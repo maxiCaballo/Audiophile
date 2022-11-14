@@ -26,6 +26,19 @@ import "./styles.css";
 import styled from "styled-components";
 
 function Home() {
+  /*   const [users, setUsers] = useState([]);
+   */
+
+  /* useEffect(() => {
+    getUsers();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+ async function getUsers() {
+    const data = await getDocs(usersCollection);
+    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }*/
+
   return (
     <>
       <div style={{ backgroundColor: "var(--color6)", height: "650px" }}>

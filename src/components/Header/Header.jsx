@@ -1,10 +1,3 @@
-//Components
-import { NavbarLink } from "../SmallerComponents/Styles/Link";
-import { Link } from "react-router-dom";
-import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
-import { totalProducts } from "../Cart/Cart";
-import Categories from "../SmallerComponents/Categories/Categories";
-import Cart from "../Cart/Cart";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -13,15 +6,26 @@ import {
   openMenu,
 } from "../../Redux/hamburgerMenuSlice";
 import { toogleCart } from "../../Redux/cartSlice";
+//react-router
+import { useNavigate } from "react-router-dom";
+//Components
+import { NavbarLink } from "../SmallerComponents/Styles/Link";
+import { Link } from "react-router-dom";
+import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+import { totalProducts } from "../Cart/Cart";
+import Categories from "../SmallerComponents/Categories/Categories";
+import Cart from "../Cart/Cart";
 //Styles
 import styled from "styled-components";
 import useWindowWidth from "../../Functions - Customs hooks/useWindowWidth";
+import loginIcon from "../../assets/login.png";
 
 function Header() {
   const hamburgerMenuOpen = useSelector((state) => state.hamburgerMenu.open);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
+  const navigate = useNavigate();
 
   //Para que no haya un scroll enorme cuando está abierto el menú hamburguesa
   if (document.readyState === "complete") {
@@ -50,6 +54,7 @@ function Header() {
       dispatch(toogleCart());
     } else dispatch(toogleCart());
   }
+
   return (
     <>
       <HamburgerMenuContainer visible={hamburgerMenuOpen}>
@@ -100,6 +105,12 @@ function Header() {
               </li>
             </ul>
           </nav>
+          <div
+            className="centered loginIcon"
+            onClick={() => navigate("/login")}
+          >
+            <img src={loginIcon} alt="login" />
+          </div>
           <div className="centered cartIcon" onClick={() => handleCart()}>
             <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -121,6 +132,7 @@ const HeaderStyles = styled.header`
   background-color: var(--color6);
   color: var(--color4);
   padding: 32px 0;
+
   & nav,
   ul {
     display: none;
@@ -128,6 +140,12 @@ const HeaderStyles = styled.header`
   & > :nth-child(1) {
     display: flex;
     justify-content: flex-start;
+  }
+  & .loginIcon {
+    filter: invert(100%) sepia(94%) saturate(2%) hue-rotate(146deg)
+      brightness(111%) contrast(100%);
+    margin-right: 15px;
+    cursor: pointer;
   }
   & .cartIcon {
     margin-left: auto;
@@ -175,10 +193,10 @@ const HeaderStyles = styled.header`
     & nav ul {
       margin: 0;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 30px;
       align-items: center;
       width: 429px;
-      height: 100%;
       list-style: none;
     }
     & nav ul li {
