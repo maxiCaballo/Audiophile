@@ -379,7 +379,7 @@ const InputsContainer = styled.div`
   margin-bottom: 53px;
   margin-top: 16px;
 `;
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -395,13 +395,13 @@ const InputContainer = styled.div`
     width: 100%;
   }
 `;
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 1.2rem;
   font-weight: 700;
   text-align: start;
   text-transform: capitalize;
 `;
-const Input = styled.input`
+export const Input = styled.input`
   border-radius: 8px;
   border: 1px solid ${({ error }) => (error ? "#ff0000" : "#cfcfcf")};
   padding: 18px 24px;

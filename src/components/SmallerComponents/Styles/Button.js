@@ -19,3 +19,24 @@ export const Button = styled.button`
 export const SummaryButton = styled(Button)`
   width: 100%;
 `;
+export const TransparentButton = styled(Button)`
+  background-color: transparent;
+  color: var(--black);
+  font-weight: 600;
+  border: 1px solid var(--black);
+  &:hover {
+    background-color: var(--black);
+    color: var(--white);
+  }
+`;
+
+export const BlackButton = styled(Button)`
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: 400;
+  border: none;
+  &:hover {
+    background-color: var(--color7);
+    color: var(--white);
+  }
+`;

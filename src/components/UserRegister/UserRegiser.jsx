@@ -1,41 +1,34 @@
 //React
-import { useMemo } from "react";
+
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //React router
 import { Link } from "react-router-dom";
 //Actions thunks
-import {
-  checkingAuthentication,
-  startGoogleSignIn,
-} from "../../Redux/auth/thunks";
+import { checkingAuthentication } from "../../Redux/auth/thunks";
 //Components
-import {
-  Button,
-  TransparentButton,
-  BlackButton,
-} from "../SmallerComponents/Styles/Button";
+import { Button } from "../SmallerComponents/Styles/Button";
 import { InputContainer, Input, Label } from "../Checkout/Checkout";
 //styles
 import styled from "styled-components";
-import googleIcon from "../../assets/googleIcon.png";
 
-function Login() {
+function UserRegister() {
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
-  const isAuthenticating = useMemo(
-    () => authState.status === "checking",
-    [authState.status]
-  );
+  // const authState = useSelector((state) => state.auth);
 
   function handleSubmit(e) {
     e.preventDefault();
   }
   return (
     <Container>
-      <h3 className="centered">Login</h3>
+      <h3 className="centered">Create account</h3>
       <div className="container">
         <form onSubmit={handleSubmit}>
+          <InputContainerStyles>
+            <Label htmlFor="fullName">Full name</Label>
+            <Input type="text" name="fullName" id="fullName" />
+          </InputContainerStyles>
+
           <InputContainerStyles>
             <Label htmlFor="email">Email</Label>
             <Input type="text" name="email" id="email" />
@@ -48,30 +41,23 @@ function Login() {
 
           <div className="centered">
             <Button
-              disabled={isAuthenticating}
+              //  disabled={isAuthenticating}
               type="submit"
               onClick={() => dispatch(checkingAuthentication())}
             >
-              Login
+              Create
             </Button>
-            <TransparentButtonStyles
-              disabled={isAuthenticating}
-              onClick={() => dispatch(startGoogleSignIn())}
-            >
-              Sign in with Google
-              <img src={googleIcon} alt="sign In with google" />
-            </TransparentButtonStyles>
           </div>
         </form>
         <div>
-          <Link to="/user/register">Create account {">"}</Link>
+          <Link to="/login">¿ Already have an account ?</Link>
         </div>
       </div>
     </Container>
   );
 }
 
-export default Login;
+export default UserRegister;
 
 const Container = styled.div`
   min-height: 100%;
@@ -93,6 +79,7 @@ const Container = styled.div`
     & > :last-child {
       display: flex;
       justify-content: flex-end;
+
       & a {
         margin-top: 20px;
         text-decoration: none;
@@ -111,38 +98,19 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    //Buttons container
-    & > div:nth-child(3) {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
     & button {
       width: 100%;
     }
   }
-
   @media only screen and (min-width: 800px) {
     & > div {
       width: 50%;
     }
-  }
-  @media only screen and (min-width: 1024px) {
-    & form > div:nth-child(3) {
-      flex-direction: row;
+    @media only screen and (min-width: 575px) {
+      padding: 120px 0;
     }
   }
-  @media only screen and (min-width: 575px) {
-    padding: 120px 0;
-  }
 `;
-
 const InputContainerStyles = styled(InputContainer)`
   width: 100%;
-`;
-const TransparentButtonStyles = styled(TransparentButton)`
-  & img {
-    margin-bottom: 5px;
-    margin-left: 15px;
-  }
 `;

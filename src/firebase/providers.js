@@ -17,11 +17,10 @@ export const signInWithGoogle = async () => {
     };
   } catch (error) {
     console.log(error);
-    // const errorCode = error.code;
+
     const errorMessage = error.message;
     return {
       ok: false,
-      //  errorCode,
       errorMessage,
     };
   }

@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/SmallerComponents/ScrollToTop/ScrollToTop";
 import Login from "./components/Login/Login";
+import UserRegiser from "./components/UserRegister/UserRegiser";
 //
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/user/register" element={<UserRegiser />} />
         </Routes>
       </main>
       <Footer />
