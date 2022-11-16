@@ -1,49 +1,99 @@
 //React
-
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //React router
 import { Link } from "react-router-dom";
 //Actions thunks
-import { checkingAuthentication } from "../../Redux/auth/thunks";
+//import { checkingAuthentication } from "../../Redux/auth/thunks";
+//React hooks form
+import { useForm } from "react-hook-form";
 //Components
 import { Button } from "../SmallerComponents/Styles/Button";
 import { InputContainer, Input, Label } from "../Checkout/Checkout";
+//Functions
+import { startCreatingUserWithEmailPassword } from "../../Redux/auth/thunks";
 //styles
 import styled from "styled-components";
 
 function UserRegister() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   // const authState = useSelector((state) => state.auth);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function onSubmit(data) {
+    dispatch(startCreatingUserWithEmailPassword(data));
   }
   return (
     <Container>
       <h3 className="centered">Create account</h3>
       <div className="container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <InputContainerStyles>
-            <Label htmlFor="fullName">Full name</Label>
-            <Input type="text" name="fullName" id="fullName" />
+            <Label htmlFor="fullName">
+              Full name {errors.name && <span>{errors.name.message}</span>}
+            </Label>
+            <Input
+              type="text"
+              name="fullName"
+              id="fullName"
+              cartOpen={cart.open}
+              error={errors.name}
+              {...register("name", {
+                required: { value: true, message: "Field required" },
+                minLength: { value: 2, message: "Min lenght of two" },
+                maxLength: 50,
+              })}
+            />
           </InputContainerStyles>
 
           <InputContainerStyles>
-            <Label htmlFor="email">Email</Label>
-            <Input type="text" name="email" id="email" />
+            <Label htmlFor="email">
+              Email {errors.email && <span>{errors.email.message}</span>}
+            </Label>
+            <Input
+              type="text"
+              name="email"
+              id="email"
+              cartOpen={cart.open}
+              error={errors.email}
+              {...register("email", {
+                required: { value: true, message: "Field required" },
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: "Enter a valid email",
+                },
+              })}
+            />
           </InputContainerStyles>
 
           <InputContainerStyles>
-            <Label htmlFor="password">Password</Label>
-            <Input type="password" name="password" id="password" />
+            <Label htmlFor="password">
+              Password{" "}
+              {errors.password && <span>{errors.password.message}</span>}
+            </Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              cartOpen={cart.open}
+              error={errors.password}
+              {...register("password", {
+                required: { value: true, message: "Field required" },
+                minLength: { value: 6, message: "Min lenght of six" },
+              })}
+            />
           </InputContainerStyles>
 
           <div className="centered">
             <Button
               //  disabled={isAuthenticating}
               type="submit"
-              onClick={() => dispatch(checkingAuthentication())}
             >
               Create
             </Button>

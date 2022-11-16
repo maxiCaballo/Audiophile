@@ -123,5 +123,7 @@ p {
   font-size: 1.5rem;
   line-height: 25px;
 }
-
+.toastBody {
+  font-size: 1.4rem;
+}
 /* ------ GLOBAL STYLES ------ */

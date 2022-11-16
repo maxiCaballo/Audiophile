@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 //Components
 import {
   DefaultLink,
@@ -24,8 +25,16 @@ import yx1DesktopTablet from "../../assets/home/desktop/image-earphones-yx1.jpg"
 //Styles
 import "./styles.css";
 import styled from "styled-components";
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import { removeToastifyMessage } from "../../Redux/auth/authSlice";
+//Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
+  const authState = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   /*   const [users, setUsers] = useState([]);
    */
 
@@ -38,9 +47,29 @@ function Home() {
     const data = await getDocs(usersCollection);
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }*/
+  useEffect(() => {
+    if (authState.uid) {
+      toast.success(authState.toastifyMessage);
+      dispatch(removeToastifyMessage());
+    }
+  }, [authState.uid]);
 
   return (
     <>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        bodyClassName="toastBody"
+      />
+
       <div style={{ backgroundColor: "var(--color6)", height: "650px" }}>
         <ImgHero className="container">
           <div className="newProductContainer">
