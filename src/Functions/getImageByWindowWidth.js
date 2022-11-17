@@ -1,4 +1,4 @@
-import useWindowWidth from "./useWindowWidth";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 //This function receives two parameters, the product object and the object key to obtain the image.
 //Then depending on the width of the screen, it returns the corresponding image.

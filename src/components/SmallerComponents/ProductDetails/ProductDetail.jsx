@@ -1,7 +1,7 @@
 //Component
 import AddToCart from "./AddToCart";
 import { DefaultLink } from "../Styles/Link";
-import { GetImageProductByWindowWidth } from "../../../Functions - Customs hooks/getImageByWindowWidth";
+import { GetImageProductByWindowWidth } from "../../../Functions/getImageByWindowWidth";
 //Styles
 import styled from "styled-components";
 

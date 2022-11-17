@@ -3,6 +3,7 @@ import {
   signInWithGoogle,
   registerUserWithEmailPassword,
   loginWithEmailPassword,
+  logoutFirebase,
 } from "../../firebase/providers";
 
 export const checkingAuthentication = (email, pass) => {
@@ -40,17 +41,28 @@ export const startCreatingUserWithEmailPassword = ({
 
     if (!ok) return dispatch(logout({ errorMessage }));
 
-    dispatch(login({ email, uid, displayName, photoURL }));
+    const toastifyMessage = `Welcome ${displayName}`;
+    dispatch(login({ email, uid, displayName, photoURL, toastifyMessage }));
   };
 };
 
 export const startLoginWithEmailPassword = ({ email, password }) => {
   return async (dispatch) => {
+    dispatch(checkingCredentials());
+
     const { ok, uid, photoURL, displayName, errorMessage } =
       await loginWithEmailPassword({ email, password });
 
     if (!ok) return dispatch(logout({ errorMessage }));
 
-    dispatch(login({ uid, email, photoURL, displayName }));
+    const toastifyMessage = `Welcome ${displayName}`;
+    dispatch(login({ uid, email, photoURL, displayName, toastifyMessage }));
+  };
+};
+
+export const startLogout = () => {
+  return async (dispatch) => {
+    await logoutFirebase();
+    dispatch(logout());
   };
 };

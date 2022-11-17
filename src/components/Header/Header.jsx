@@ -6,6 +6,7 @@ import {
   openMenu,
 } from "../../Redux/hamburgerMenuSlice";
 import { toogleCart } from "../../Redux/cartSlice";
+import { startLogout } from "../../Redux/auth/thunks";
 //react-router
 import { useNavigate } from "react-router-dom";
 //Components
@@ -17,12 +18,14 @@ import Categories from "../SmallerComponents/Categories/Categories";
 import Cart from "../Cart/Cart";
 //Styles
 import styled from "styled-components";
-import useWindowWidth from "../../Functions - Customs hooks/useWindowWidth";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import loginIcon from "../../assets/login.png";
+import logoutIcon from "../../assets/logout.png";
 
 function Header() {
   const hamburgerMenuOpen = useSelector((state) => state.hamburgerMenu.open);
   const cart = useSelector((state) => state.cart);
+  const authState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
   const navigate = useNavigate();
@@ -53,6 +56,11 @@ function Header() {
       dispatch(closeMenu());
       dispatch(toogleCart());
     } else dispatch(toogleCart());
+  }
+
+  function handleLogout() {
+    dispatch(startLogout());
+    navigate("/");
   }
 
   return (
@@ -105,12 +113,19 @@ function Header() {
               </li>
             </ul>
           </nav>
-          <div
-            className="centered loginIcon"
-            onClick={() => navigate("/login")}
-          >
-            <img src={loginIcon} alt="login" />
-          </div>
+          {authState.status === "authenticated" ? (
+            <div className="centered logoutIcon" onClick={() => handleLogout()}>
+              <img src={logoutIcon} alt="logout" />
+            </div>
+          ) : (
+            <div
+              className="centered loginIcon"
+              onClick={() => navigate("/login")}
+            >
+              <img src={loginIcon} alt="login" />
+            </div>
+          )}
+
           <div className="centered cartIcon" onClick={() => handleCart()}>
             <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -141,7 +156,8 @@ const HeaderStyles = styled.header`
     display: flex;
     justify-content: flex-start;
   }
-  & .loginIcon {
+  & .loginIcon,
+  .logoutIcon {
     filter: invert(100%) sepia(94%) saturate(2%) hue-rotate(146deg)
       brightness(111%) contrast(100%);
     margin-right: 15px;

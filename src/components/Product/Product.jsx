@@ -7,7 +7,7 @@ import { DefaultLink } from "../SmallerComponents/Styles/Link";
 import {
   GetGalleryImageByWindowWidth,
   GetOthersProductImageByWindowWidth,
-} from "../../Functions - Customs hooks/getImageByWindowWidth";
+} from "../../Functions/getImageByWindowWidth";
 import { useParams } from "react-router-dom";
 import { data } from "../../data";
 import styled from "styled-components";

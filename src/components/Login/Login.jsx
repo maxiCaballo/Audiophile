@@ -40,11 +40,6 @@ function Login() {
   function onSubmit(data) {
     dispatch(startLoginWithEmailPassword(data));
   }
-  useEffect(() => {
-    if (authState.uid) {
-      navigate("/");
-    }
-  }, [authState.uid]);
 
   return (
     <Container>

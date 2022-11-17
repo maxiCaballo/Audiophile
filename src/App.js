@@ -3,6 +3,10 @@ import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
+//React router
+import { Navigate } from "react-router-dom";
+//Custom hook
+import { useCheckAuth } from "./hooks/useCheckAuth";
 //Components
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -19,6 +23,28 @@ import "./App.css";
 //Mobile <= 375px
 
 function App() {
+  const status = useCheckAuth();
+  console.log(status);
+
+  if (status === "authenticated") {
+    return (
+      <>
+        <ScrollToTop />
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/categories/:category" element={<Category />} />
+            <Route path="/products/:slug" element={<Product />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <ScrollToTop />
@@ -28,8 +54,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/categories/:category" element={<Category />} />
           <Route path="/products/:slug" element={<Product />} />
-          <Route path="/products/:slug" element={<Product />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user/register" element={<UserRegister />} />
         </Routes>

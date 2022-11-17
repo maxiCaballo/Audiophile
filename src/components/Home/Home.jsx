@@ -34,6 +34,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   const authState = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   /*   const [users, setUsers] = useState([]);
    */
@@ -48,11 +49,11 @@ function Home() {
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }*/
   useEffect(() => {
-    if (authState.uid) {
+    if (authState.toastifyMessage) {
       toast.success(authState.toastifyMessage);
       dispatch(removeToastifyMessage());
     }
-  }, [authState.uid]);
+  }, []);
 
   return (
     <>

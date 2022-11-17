@@ -15,15 +15,16 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { email, uid, displayName, photoURL } = action.payload;
-
+      const { email, uid, displayName, photoURL, toastifyMessage } =
+        action.payload;
+      console.log(toastifyMessage);
       state.status = "authenticated";
       state.uid = uid;
       state.email = email;
       state.displayName = displayName;
       state.photoURL = photoURL;
       state.errorMessage = null;
-      state.toastifyMessage = `Welcome ${state.displayName}`;
+      state.toastifyMessage = toastifyMessage;
     },
     logout: (state, action) => {
       state.status = "not-authenticated";
@@ -32,13 +33,13 @@ export const userSlice = createSlice({
       state.displayName = null;
       state.photoURL = null;
       state.toastifyMessage = null;
-      state.errorMessage = action.payload.errorMessage;
+      state.errorMessage = action.payload?.errorMessage;
     },
     checkingCredentials: (state) => {
       state.status = "checking";
     },
     removeToastifyMessage: (state) => {
-      console.log("entre aca");
+      console.log("entré aca");
       state.toastifyMessage = null;
     },
   },
