@@ -19,7 +19,8 @@ export const startGoogleSignIn = () => {
 
     if (!response.ok) return dispatch(logout(response.errorMessage));
 
-    dispatch(login(response));
+    const loginMessage = `Welcome ${response.displayName}`;
+    dispatch(login({ ...response, loginMessage }));
   };
 };
 
@@ -41,8 +42,8 @@ export const startCreatingUserWithEmailPassword = ({
 
     if (!ok) return dispatch(logout({ errorMessage }));
 
-    const toastifyMessage = `Welcome ${displayName}`;
-    dispatch(login({ email, uid, displayName, photoURL, toastifyMessage }));
+    const loginMessage = `Welcome ${displayName}`;
+    dispatch(login({ email, uid, displayName, photoURL, loginMessage }));
   };
 };
 
@@ -55,8 +56,8 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
 
     if (!ok) return dispatch(logout({ errorMessage }));
 
-    const toastifyMessage = `Welcome ${displayName}`;
-    dispatch(login({ uid, email, photoURL, displayName, toastifyMessage }));
+    const loginMessage = `Welcome ${displayName}`;
+    dispatch(login({ uid, email, photoURL, displayName, loginMessage }));
   };
 };
 

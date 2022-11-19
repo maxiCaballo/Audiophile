@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import { removeToastifyMessage } from "../../Redux/auth/authSlice";
 //Components
 import {
   DefaultLink,
@@ -25,9 +28,6 @@ import yx1DesktopTablet from "../../assets/home/desktop/image-earphones-yx1.jpg"
 //Styles
 import "./styles.css";
 import styled from "styled-components";
-//Redux
-import { useSelector, useDispatch } from "react-redux";
-import { removeToastifyMessage } from "../../Redux/auth/authSlice";
 //Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,6 +53,7 @@ function Home() {
       toast.success(authState.toastifyMessage);
       dispatch(removeToastifyMessage());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

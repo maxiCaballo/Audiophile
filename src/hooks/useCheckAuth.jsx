@@ -13,9 +13,9 @@ function useCheckAuth() {
       if (!user) return dispatch(logout());
       const { uid, email, displayName, photoURL } = user;
 
-      const toastifyMessage = `Welcome ${displayName}`;
-      dispatch(login({ email, uid, displayName, photoURL, toastifyMessage }));
+      dispatch(login({ email, uid, displayName, photoURL }));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return status;

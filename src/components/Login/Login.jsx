@@ -1,11 +1,11 @@
 //React
-import { useMemo, useEffect } from "react";
+import { useEffect, useState } from "react";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //React hook form
 import { useForm } from "react-hook-form";
 //React router
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //thunks actions
 import {
   checkingAuthentication,
@@ -13,51 +13,64 @@ import {
   startLoginWithEmailPassword,
 } from "../../Redux/auth/thunks";
 //Synchronous actions
-import { removeToastifyMessage } from "../../Redux/auth/authSlice";
+import { removeErrorMessage } from "../../Redux/auth/authSlice";
 //Components
 import { Button, TransparentButton } from "../SmallerComponents/Styles/Button";
 import { InputContainer, Input, Label } from "../Checkout/Checkout";
 //styles
 import styled from "styled-components";
 import googleIcon from "../../assets/googleIcon.png";
+import "animate.css";
 
 function Login() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  const isAuthenticating = useMemo(
+  const [clickOnGoogleButton, setClickOnGoogleButton] = useState(true);
+
+  /*   const isAuthenticating = useMemo(
     () => authState.status === "checking",
     [authState.status]
-  );
+  ); */
 
   function onSubmit(data) {
     dispatch(startLoginWithEmailPassword(data));
   }
 
+  useEffect(() => {
+    if (authState.errorMessage) dispatch(removeErrorMessage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <Container>
+    <Container className="animate__animated animate__fadeIn">
       <h3 className="centered">Login</h3>
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputContainerStyles>
             <Label htmlFor="email">
-              Email {errors.email && <span>{errors.email.message}</span>}
+              Email{" "}
+              {errors.email && clickOnGoogleButton && (
+                <span>{errors.email.message}</span>
+              )}
             </Label>
             <Input
               type="text"
               name="email"
               id="email"
               cartOpen={cart.open}
-              error={errors.email}
+              error={clickOnGoogleButton && errors.email}
               {...register("email", {
                 required: { value: true, message: "Field required" },
+                pattern: {
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: "Enter a valid email",
+                },
               })}
             />
           </InputContainerStyles>
@@ -65,14 +78,16 @@ function Login() {
           <InputContainerStyles>
             <Label htmlFor="password">
               Password{" "}
-              {errors.password && <span>{errors.password.message}</span>}
+              {errors.password && clickOnGoogleButton && (
+                <span>{errors.password.message}</span>
+              )}
             </Label>
             <Input
               type="password"
               name="password"
               id="password"
               cartOpen={cart.open}
-              error={errors.password}
+              error={clickOnGoogleButton && errors.password}
               {...register("password", {
                 required: { value: true, message: "Field required" },
               })}
@@ -81,15 +96,21 @@ function Login() {
 
           <div className="centered">
             <Button
-              //disabled={isAuthenticating}
+              /*   disabled={isAuthenticating} */
               type="submit"
-              onClick={() => dispatch(checkingAuthentication())}
+              onClick={() => {
+                setClickOnGoogleButton(true);
+                dispatch(checkingAuthentication());
+              }}
             >
               Login
             </Button>
             <TransparentButtonStyles
-              //disabled={isAuthenticating}
-              onClick={() => dispatch(startGoogleSignIn())}
+              /*  disabled={isAuthenticating} */
+              onClick={() => {
+                setClickOnGoogleButton(false);
+                dispatch(startGoogleSignIn());
+              }}
             >
               Sign in with Google
               <img src={googleIcon} alt="sign In with google" />
@@ -99,9 +120,12 @@ function Login() {
         <div>
           <Link to="/user/register">Create account {">"}</Link>
         </div>
-        {/*  {authState.errorMessage && <span>{authState.errorMessage}</span>} */}
       </div>
-      <span>Firebase: Error (auth/wrong-password).</span>
+      {authState.errorMessage && (
+        <div className="errorMessage">
+          <span>{authState.errorMessage}.</span>
+        </div>
+      )}
     </Container>
   );
 }
@@ -114,6 +138,7 @@ const Container = styled.div`
   place-items: center;
   background-color: var(--color4);
   padding: 120px 24px;
+  gap: 10px;
   & h3 {
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -157,7 +182,18 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
+  & .errorMessage {
+    background-color: var(--color2);
+    padding: 15px;
+    display: grid;
+    place-items: center;
 
+    & span {
+      font-size: 1.2rem;
+      color: var(--black);
+      font-weight: 700;
+    }
+  }
   @media only screen and (min-width: 800px) {
     & > div {
       width: 50%;

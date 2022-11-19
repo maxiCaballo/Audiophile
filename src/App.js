@@ -11,8 +11,8 @@ import { useCheckAuth } from "./hooks/useCheckAuth";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/SmallerComponents/ScrollToTop/ScrollToTop";
-import Login from "./components/Login/Login";
-import UserRegister from "./components/UserRegister/UserRegister";
+import Login from "./pages/Login";
+import UserRegister from "./pages/UserRegister";
 //
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -24,8 +24,6 @@ import "./App.css";
 
 function App() {
   const status = useCheckAuth();
-  console.log(status);
-
   if (status === "authenticated") {
     return (
       <>
@@ -56,6 +54,7 @@ function App() {
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user/register" element={<UserRegister />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
       <Footer />

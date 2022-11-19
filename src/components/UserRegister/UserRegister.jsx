@@ -1,36 +1,48 @@
-//React
+import { useEffect } from "react";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //React router
 import { Link } from "react-router-dom";
-//Actions thunks
-//import { checkingAuthentication } from "../../Redux/auth/thunks";
+//thunks actions
+import {
+  checkingAuthentication,
+  startCreatingUserWithEmailPassword,
+} from "../../Redux/auth/thunks";
+//Synchronous actions
+import { removeErrorMessage } from "../../Redux/auth/authSlice";
 //React hooks form
 import { useForm } from "react-hook-form";
 //Components
 import { Button } from "../SmallerComponents/Styles/Button";
 import { InputContainer, Input, Label } from "../Checkout/Checkout";
 //Functions
-import { startCreatingUserWithEmailPassword } from "../../Redux/auth/thunks";
+import { capitalize } from "../../Functions/capitalize";
 //styles
 import styled from "styled-components";
+import "animate.css";
 
 function UserRegister() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  // const authState = useSelector((state) => state.auth);
+  const authState = useSelector((state) => state.auth);
 
   function onSubmit(data) {
+    const name = capitalize(data.name);
+    data = { ...data, name };
     dispatch(startCreatingUserWithEmailPassword(data));
   }
+  useEffect(() => {
+    if (authState.errorMessage) dispatch(removeErrorMessage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <Container>
+    <Container className="animate__animated animate__fadeIn">
       <h3 className="centered">Create account</h3>
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -94,6 +106,7 @@ function UserRegister() {
             <Button
               //  disabled={isAuthenticating}
               type="submit"
+              onClick={() => dispatch(checkingAuthentication())}
             >
               Create
             </Button>
@@ -103,6 +116,11 @@ function UserRegister() {
           <Link to="/login">¿ Already have an account ?</Link>
         </div>
       </div>
+      {authState.errorMessage && (
+        <div className="errorMessage">
+          <span>{authState.errorMessage}.</span>
+        </div>
+      )}
     </Container>
   );
 }
@@ -115,6 +133,7 @@ const Container = styled.div`
   place-items: center;
   background-color: var(--color4);
   padding: 120px 24px;
+  gap: 10px;
   & h3 {
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -150,6 +169,18 @@ const Container = styled.div`
     gap: 20px;
     & button {
       width: 100%;
+    }
+  }
+  & .errorMessage {
+    background-color: var(--color2);
+    padding: 15px;
+    display: grid;
+    place-items: center;
+
+    & span {
+      font-size: 1.2rem;
+      color: var(--black);
+      font-weight: 700;
     }
   }
   @media only screen and (min-width: 800px) {
