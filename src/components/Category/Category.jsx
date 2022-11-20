@@ -17,6 +17,7 @@ export default function Category() {
         params.category.toLocaleLowerCase()
     )
     .sort((a) => a.new && -1);
+
   return (
     <>
       {products.length ? (

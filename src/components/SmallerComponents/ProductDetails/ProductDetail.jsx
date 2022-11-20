@@ -1,11 +1,19 @@
+//React
+import { useRef } from "react";
 //Component
 import AddToCart from "./AddToCart";
 import { DefaultLink } from "../Styles/Link";
 import { GetImageProductByWindowWidth } from "../../../Functions/getImageByWindowWidth";
+//Functions
+import { useScrollAppear } from "../../../Functions/scrollAppear";
 //Styles
 import styled from "styled-components";
+import "animate.css";
 
 function ProductDetail({ item, categoryPage, productPage }) {
+  const element = useRef(null);
+  useScrollAppear(element);
+
   let image;
   if (categoryPage) {
     image = GetImageProductByWindowWidth(item, "categoryImage");
@@ -23,7 +31,7 @@ function ProductDetail({ item, categoryPage, productPage }) {
       <div>
         <img src={image} alt={item.name} width="100%" height="100%" />
       </div>
-      <div>
+      <div ref={element}>
         {item.new && <span>new product</span>}
         <h2>{item.name.toUpperCase()}</h2>
         <p>{item.description}</p>
@@ -57,6 +65,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    opacity: 0;
     //New product
     & > span {
       font-size: 1.4rem;

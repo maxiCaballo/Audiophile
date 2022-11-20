@@ -79,6 +79,16 @@ body {
   background-position: center center / cover no-repeat;
 }
 
+.contentHidden {
+  opacity: 1;
+  transform: translateX(30px);
+  transition: 0.5s all ease-in-out;
+}
+.contentAppear {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /*------ My classes -End- ------*/
 h1,
 h2,
