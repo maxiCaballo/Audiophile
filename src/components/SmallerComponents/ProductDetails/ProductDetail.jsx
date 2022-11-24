@@ -10,9 +10,9 @@ import { useScrollAppear } from "../../../Functions/scrollAppear";
 import styled from "styled-components";
 import "animate.css";
 
-function ProductDetail({ item, categoryPage, productPage }) {
+function ProductDetail({ item, categoryPage, productPage, evenElement }) {
   const element = useRef(null);
-  useScrollAppear(element);
+  useScrollAppear(element, evenElement, productPage);
 
   let image;
   if (categoryPage) {
@@ -31,7 +31,12 @@ function ProductDetail({ item, categoryPage, productPage }) {
       <div>
         <img src={image} alt={item.name} width="100%" height="100%" />
       </div>
-      <div ref={element}>
+      <div
+        ref={element}
+        className={`${
+          evenElement === 0 && "animate__animated animate__fadeInRight" //Para que no tenga que hacer scroll para que aparezca en el 1er elemento
+        }`}
+      >
         {item.new && <span>new product</span>}
         <h2>{item.name.toUpperCase()}</h2>
         <p>{item.description}</p>
@@ -65,7 +70,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    opacity: 0;
+    opacity: ${({ productPage }) => (productPage ? 1 : 0)};
     //New product
     & > span {
       font-size: 1.4rem;

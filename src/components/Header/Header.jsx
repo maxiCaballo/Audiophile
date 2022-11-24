@@ -115,7 +115,7 @@ function Header() {
           </nav>
           {authState.status === "authenticated" ? (
             <div className="centered logoutLoginPhotoContainer">
-              {authState.photoURL && (
+              {authState.photoURL !== null && (
                 <img src={authState.photoURL} alt="me" className="iconPhoto" />
               )}
               <img

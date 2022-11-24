@@ -34,7 +34,6 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
-  height: 100%;
 }
 .marginBetweenComponents {
   margin: var(--marginBetweenComponents);
@@ -79,14 +78,8 @@ body {
   background-position: center center / cover no-repeat;
 }
 
-.contentHidden {
-  opacity: 1;
-  transform: translateX(30px);
-  transition: 0.5s all ease-in-out;
-}
-.contentAppear {
-  opacity: 1;
-  transform: translateX(0);
+.toastBody {
+  font-size: 1.4rem;
 }
 
 /*------ My classes -End- ------*/
@@ -133,7 +126,5 @@ p {
   font-size: 1.5rem;
   line-height: 25px;
 }
-.toastBody {
-  font-size: 1.4rem;
-}
+
 /* ------ GLOBAL STYLES ------ */

@@ -8,6 +8,7 @@ import ProductDetail from "./ProductDetail";
 import iconConfirmation from "../../../assets/checkout/icon-order-confirmation.svg";
 //Redux
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function OrderConfirmation({
   setShowOrderConfirmation,
@@ -16,6 +17,7 @@ function OrderConfirmation({
 }) {
   const [viewMoreButton, setViewMoreButton] = useState(true);
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   window.scrollTo(0, 0);
 
@@ -60,7 +62,12 @@ function OrderConfirmation({
             <span>$ {grandTotal}</span>
           </GrandTotal>
         </div>
-        <SummaryButton onClick={() => setShowOrderConfirmation(false)}>
+        <SummaryButton
+          onClick={() => {
+            setShowOrderConfirmation(false);
+            navigate("/");
+          }}
+        >
           Back to home
         </SummaryButton>
       </div>
@@ -72,6 +79,7 @@ export default OrderConfirmation;
 //Styles
 const OrderConfirmationStyles = styled(defaultStyle)`
   padding: 224px 24px;
+
   & h5 {
     display: flex;
     flex-direction: column;

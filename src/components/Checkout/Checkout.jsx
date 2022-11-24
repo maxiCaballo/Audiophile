@@ -7,18 +7,26 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+//Thunks actions
+import { startRegisterPurchase } from "../../firebase/actions";
 
 function Checkout() {
   const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
   const cart = useSelector((state) => state.cart);
+
+  const { status, displayName, email, uid } = useSelector(
+    (state) => state.auth
+  );
   const {
     register,
     handleSubmit,
-    /*reset, */
+    reset,
     formState: { errors },
     watch,
   } = useForm({
     defaultValues: {
+      name: status && displayName,
+      email: status && email,
       creditCardNumber: 123546789,
       creditCardPin: 123,
     },
@@ -27,6 +35,45 @@ function Checkout() {
 
   function onSubmit(data) {
     setShowOrderConfirmation(true);
+    const products = [];
+    //Set date and hour;
+    const date = new Date();
+    const dateTimePurchase = `${date.toLocaleDateString("es-ES")} ${date
+      .getHours()
+      .toString()}:${date.getMinutes().toString()}`;
+    //Para que el array de products no tenga muchas propiedades
+    for (const { id, name, quantity, unitPrice } of cart.products) {
+      const auxObj = {
+        id,
+        name,
+        quantity,
+        unitPrice,
+      };
+      products.push(auxObj);
+    }
+
+    data = {
+      ...data,
+      uid,
+      total: detailedPrice,
+      products,
+      date: dateTimePurchase,
+    };
+    if (data.paymentMethod === "cash_on_delivery") {
+      data = {
+        uid,
+        address: data.address,
+        city: data.city,
+        country: data.country,
+        email: data.email,
+        name: data.name,
+        paymentMethod: data.paymentMethod,
+        zipCode: data.zipCode,
+        date: dateTimePurchase,
+      };
+    }
+    startRegisterPurchase(data);
+    reset();
   }
 
   return (
@@ -186,7 +233,7 @@ function Checkout() {
                             border: "1px solid #ff0000",
                           }
                         }
-                        {...register("creditCard")}
+                        // {...register("creditCard")}
                       >
                         <Input
                           type="radio"
@@ -208,7 +255,7 @@ function Checkout() {
                       <Label
                         htmlFor="cashOnDelivery"
                         className="centered"
-                        {...register("creditCard")}
+                        // {...register("creditCard")}
                         style={
                           errors.paymentMethod && {
                             border: "1px solid #ff0000",

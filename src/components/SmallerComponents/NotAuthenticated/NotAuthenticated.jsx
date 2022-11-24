@@ -2,15 +2,33 @@
 import { DefaultLink } from "../Styles/Link";
 //Styles
 import styled from "styled-components";
+import { useEffect } from "react";
+import { useState } from "react";
 
-function NotAuthenticated() {
+function NotAuthenticated({
+  messageError,
+  redirectionPath,
+  redirectionButtonMessage,
+}) {
+  const [height, setHeight] = useState("");
+  useEffect(() => {
+    setHeight(
+      `calc(100vh - ${
+        document.querySelector("header").offsetHeight +
+        document.querySelector("footer").offsetHeight
+      }px)`
+    );
+  }, [height]);
+
   return (
     <>
-      <Container className="container">
+      <Container className="container" height={height}>
         <h2>Ups!</h2>
         <div>
-          <p>You must be registered to buy</p>
-          <DefaultLink to="/login">GO TO LOGIN</DefaultLink>
+          <p>{messageError}</p>
+          <DefaultLink to={redirectionPath}>
+            {redirectionButtonMessage}
+          </DefaultLink>
         </div>
       </Container>
     </>
@@ -18,11 +36,12 @@ function NotAuthenticated() {
 }
 
 const Container = styled.div`
-  height: 100%;
+  height: ${({ height }) => height};
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+
   & h2 {
     padding-top: 50px;
   }

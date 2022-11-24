@@ -6,7 +6,8 @@ import {
   logoutFirebase,
 } from "../../firebase/providers";
 
-export const checkingAuthentication = (email, pass) => {
+//AUTHENTICATION
+export const checkingAuthentication = () => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
   };
@@ -60,7 +61,6 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
     dispatch(login({ uid, email, photoURL, displayName, loginMessage }));
   };
 };
-
 export const startLogout = () => {
   return async (dispatch) => {
     await logoutFirebase();

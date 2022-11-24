@@ -27,12 +27,13 @@ export default function Category() {
               <span>{params.category}</span>
             </div>
           </TitleCategory>
-          {products.map((item) => (
+          {products.map((item, index) => (
             <ProductDetail
               key={item.id}
               item={item}
               categoryPage={true}
               productPage={false}
+              evenElement={index}
             />
           ))}
 
