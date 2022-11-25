@@ -36,18 +36,7 @@ function Home() {
   const authState = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-  /*   const [users, setUsers] = useState([]);
-   */
 
-  /* useEffect(() => {
-    getUsers();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
- async function getUsers() {
-    const data = await getDocs(usersCollection);
-    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }*/
   useEffect(() => {
     if (authState.toastifyMessage) {
       toast.success(authState.toastifyMessage);

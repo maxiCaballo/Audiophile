@@ -1,28 +1,19 @@
+//Hooks
+//import { useHeightStyle } from "../../../hooks/useHeightStyle";
 //Components
 import { DefaultLink } from "../Styles/Link";
 //Styles
 import styled from "styled-components";
-import { useEffect } from "react";
-import { useState } from "react";
 
 function NotAuthenticated({
   messageError,
   redirectionPath,
   redirectionButtonMessage,
 }) {
-  const [height, setHeight] = useState("");
-  useEffect(() => {
-    setHeight(
-      `calc(100vh - ${
-        document.querySelector("header").offsetHeight +
-        document.querySelector("footer").offsetHeight
-      }px)`
-    );
-  }, [height]);
-
+  //const height = useHeightStyle();
   return (
     <>
-      <Container className="container" height={height}>
+      <Container className="container" /* height={height} */>
         <h2>Ups!</h2>
         <div>
           <p>{messageError}</p>
@@ -36,7 +27,7 @@ function NotAuthenticated({
 }
 
 const Container = styled.div`
-  height: ${({ height }) => height};
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

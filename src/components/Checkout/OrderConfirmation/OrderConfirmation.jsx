@@ -65,10 +65,10 @@ function OrderConfirmation({
         <SummaryButton
           onClick={() => {
             setShowOrderConfirmation(false);
-            navigate("/");
+            navigate("/purchases");
           }}
         >
-          Back to home
+          My purchases
         </SummaryButton>
       </div>
     </OrderConfirmationStyles>
