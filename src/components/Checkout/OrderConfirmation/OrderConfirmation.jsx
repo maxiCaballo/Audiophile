@@ -4,11 +4,13 @@ import { useState } from "react";
 import { SecondaryButton } from "../../SmallerComponents/Styles/Button";
 import { defaultStyle } from "../../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
 import ProductDetail from "./ProductDetail";
+import Spinner from "../../SmallerComponents/Spinner/Spinner";
 //Icon
 import iconConfirmation from "../../../assets/checkout/icon-order-confirmation.svg";
 //Redux
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function OrderConfirmation({
   setShowOrderConfirmation,
@@ -18,59 +20,74 @@ function OrderConfirmation({
   const [viewMoreButton, setViewMoreButton] = useState(true);
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  const [spinner, setSpinner] = useState(true);
 
   window.scrollTo(0, 0);
+
+  //Simulacion de delay con el servidor
+  async function showSpinner() {
+    setTimeout(() => {
+      setSpinner(false);
+    }, 2500);
+  }
+  useEffect(() => {
+    showSpinner();
+  }, []);
 
   return (
     <OrderConfirmationStyles
       visible={showOrderConfirmation}
       onClick={() => setShowOrderConfirmation(false)}
     >
-      <div onClick={(e) => e.stopPropagation()}>
-        <div>
-          <img src={iconConfirmation} alt="confirmation" />
-        </div>
-        <h5>
-          <span>Thank you</span> <span>for your order.</span>
-        </h5>
-        <p>You will receive an email confirmation shortly</p>
-        <div>
-          <ProductDetailContainer>
-            {cart.products.length > 0 && cart.products.length > 1 ? (
-              viewMoreButton ? (
-                <ProductDetail product={cart.products[0]} />
+      {spinner ? (
+        <Spinner size={60} />
+      ) : (
+        <div onClick={(e) => e.stopPropagation()}>
+          <div>
+            <img src={iconConfirmation} alt="confirmation" />
+          </div>
+          <h5>
+            <span>Thank you</span> <span>for your order.</span>
+          </h5>
+          <p>You will receive an email confirmation shortly</p>
+          <div>
+            <ProductDetailContainer>
+              {cart.products.length > 0 && cart.products.length > 1 ? (
+                viewMoreButton ? (
+                  <ProductDetail product={cart.products[0]} />
+                ) : (
+                  cart.products.map((product) => (
+                    <ProductDetail product={product} key={product.id} />
+                  ))
+                )
               ) : (
-                cart.products.map((product) => (
-                  <ProductDetail product={product} key={product.id} />
-                ))
-              )
-            ) : (
-              <ProductDetail product={cart.products[0]} />
-            )}
-            {cart.products.length > 1 && (
-              <ButtonViewMore>
-                <button onClick={() => setViewMoreButton(!viewMoreButton)}>
-                  {viewMoreButton
-                    ? `And ${cart.products.length - 1} more item(s)`
-                    : "View less"}
-                </button>
-              </ButtonViewMore>
-            )}
-          </ProductDetailContainer>
-          <GrandTotal>
-            <span>Grand total</span>
-            <span>$ {grandTotal}</span>
-          </GrandTotal>
+                <ProductDetail product={cart.products[0]} />
+              )}
+              {cart.products.length > 1 && (
+                <ButtonViewMore>
+                  <button onClick={() => setViewMoreButton(!viewMoreButton)}>
+                    {viewMoreButton
+                      ? `And ${cart.products.length - 1} more item(s)`
+                      : "View less"}
+                  </button>
+                </ButtonViewMore>
+              )}
+            </ProductDetailContainer>
+            <GrandTotal>
+              <span>Grand total</span>
+              <span>$ {grandTotal}</span>
+            </GrandTotal>
+          </div>
+          <SecondaryButton
+            onClick={() => {
+              setShowOrderConfirmation(false);
+              navigate("/purchases");
+            }}
+          >
+            My purchases
+          </SecondaryButton>
         </div>
-        <SecondaryButton
-          onClick={() => {
-            setShowOrderConfirmation(false);
-            navigate("/purchases");
-          }}
-        >
-          My purchases
-        </SecondaryButton>
-      </div>
+      )}
     </OrderConfirmationStyles>
   );
 }

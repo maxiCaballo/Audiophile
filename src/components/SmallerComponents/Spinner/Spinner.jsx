@@ -3,18 +3,19 @@ import styled from "styled-components";
 //Spinner
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Spinner() {
+function Spinner({ size = 50, color = "#d87d4a" }) {
   return (
     <SpinnerContainer className="container">
-      <ClipLoader color="#d87d4a" size={50} />
+      <ClipLoader color={color} size={size} />
     </SpinnerContainer>
   );
 }
 
-export default Spinner;
-
 const SpinnerContainer = styled.div`
   height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
+
+export default Spinner;

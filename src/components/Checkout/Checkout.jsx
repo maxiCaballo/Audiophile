@@ -11,7 +11,7 @@ import { useState } from "react";
 import { startRegisterPurchase } from "../../firebase/actions";
 
 function Checkout() {
-  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(true);
   const cart = useSelector((state) => state.cart);
 
   const { status, displayName, email, uid } = useSelector(
