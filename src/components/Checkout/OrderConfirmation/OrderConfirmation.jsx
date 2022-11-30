@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 //Components
-import { SummaryButton } from "../../SmallerComponents/Styles/Button";
+import { SecondaryButton } from "../../SmallerComponents/Styles/Button";
 import { defaultStyle } from "../../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
 import ProductDetail from "./ProductDetail";
 //Icon
@@ -62,14 +62,14 @@ function OrderConfirmation({
             <span>$ {grandTotal}</span>
           </GrandTotal>
         </div>
-        <SummaryButton
+        <SecondaryButton
           onClick={() => {
             setShowOrderConfirmation(false);
             navigate("/purchases");
           }}
         >
           My purchases
-        </SummaryButton>
+        </SecondaryButton>
       </div>
     </OrderConfirmationStyles>
   );

@@ -14,7 +14,7 @@ import ScrollToTop from "./components/SmallerComponents/ScrollToTop/ScrollToTop"
 import Login from "./pages/Login";
 import UserRegister from "./pages/UserRegister";
 import Purchases from "./pages/Purchases";
-import NotAuthenticated from "./components/SmallerComponents/NotAuthenticated/NotAuthenticated";
+import AccesDenied from "./components/SmallerComponents/AccesDenied/AccesDenied";
 
 //
 import { Routes, Route } from "react-router-dom";
@@ -39,6 +39,16 @@ function App() {
             <Route path="/products/:slug" element={<Product />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/purchases" element={<Purchases />} />
+            <Route
+              path="/login"
+              element={
+                <AccesDenied
+                  messageError={"You are already logged in"}
+                  redirectionPath={"/"}
+                  redirectionButtonMessage={"HOME"}
+                />
+              }
+            />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </main>
@@ -58,14 +68,23 @@ function App() {
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user/register" element={<UserRegister />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/checkout"
+            element={
+              <AccesDenied
+                messageError={"You must be registered to buy"}
+                redirectionPath={"/login"}
+                redirectionButtonMessage={"LOGIN"}
+              />
+            }
+          />
           <Route
             path="/purchases"
             element={
-              <NotAuthenticated
+              <AccesDenied
                 messageError={"You must to be logged in to see your purchases"}
                 redirectionPath={"/login"}
-                redirectionButtonMessage={"GO LOGIN"}
+                redirectionButtonMessage={"LOGIN"}
               />
             }
           />

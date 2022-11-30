@@ -5,12 +5,13 @@ import { DefaultLink } from "../Styles/Link";
 //Styles
 import styled from "styled-components";
 
-function NotAuthenticated({
+function AccesDenied({
   messageError,
   redirectionPath,
   redirectionButtonMessage,
 }) {
   //const height = useHeightStyle();
+
   return (
     <>
       <Container className="container" /* height={height} */>
@@ -52,7 +53,7 @@ const Container = styled.div`
     & a {
       width: 50%;
       font-size: 1.1rem;
-      height: 30px;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -73,4 +74,4 @@ const Container = styled.div`
   }
 `;
 
-export default NotAuthenticated;
+export default AccesDenied;

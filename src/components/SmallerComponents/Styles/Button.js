@@ -16,7 +16,7 @@ export const Button = styled.button`
     color: var(--white);
   }
 `;
-export const SummaryButton = styled(Button)`
+export const SecondaryButton = styled(Button)`
   width: 100%;
 `;
 export const TransparentButton = styled(Button)`

@@ -1,6 +1,6 @@
 //Components
 import { Product, totalPrice } from "../Cart/Cart";
-import { SummaryButton } from "../SmallerComponents/Styles/Button";
+import { SecondaryButton } from "../SmallerComponents/Styles/Button";
 import OrderConfirmation from "./OrderConfirmation/OrderConfirmation";
 //Hooks-redux-Styles
 import styled from "styled-components";
@@ -59,19 +59,7 @@ function Checkout() {
       products,
       date: dateTimePurchase,
     };
-    if (data.paymentMethod === "cash_on_delivery") {
-      data = {
-        uid,
-        address: data.address,
-        city: data.city,
-        country: data.country,
-        email: data.email,
-        name: data.name,
-        paymentMethod: data.paymentMethod,
-        zipCode: data.zipCode,
-        date: dateTimePurchase,
-      };
-    }
+
     startRegisterPurchase(data);
     reset();
   }
@@ -362,7 +350,9 @@ function Checkout() {
                 </div>
               </PriceDetail>
 
-              <SummaryButton type="submit">continue {"&"} pay</SummaryButton>
+              <SecondaryButton type="submit">
+                continue {"&"} pay
+              </SecondaryButton>
             </Summary>
           </form>
         </Container>
