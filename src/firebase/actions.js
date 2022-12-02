@@ -10,5 +10,6 @@ export const startRegisterPurchase = async (purchase) => {
     });
   } catch (error) {
     console.log(error);
+    return error;
   }
 };

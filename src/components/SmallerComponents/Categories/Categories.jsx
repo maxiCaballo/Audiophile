@@ -35,6 +35,15 @@ function Categories() {
 export default Categories;
 
 export const CategoryContainer = styled.div`
+  /* margin: ${({ hamburguerMenuOpen }) =>
+    hamburguerMenuOpen ? "0 auto" : "var(--marginBetweenComponents)"};
+  display: flex;
+  flex-direction: column;
+  gap: 85px;
+  & a {
+    width: 100%;
+  }
+  padding-bottom: 45px; */
   background-color: ${({ hamburguerMenuOpen }) =>
     hamburguerMenuOpen && "var(--white)"};
   height: ${({ hamburguerMenuOpen }) =>
@@ -45,12 +54,14 @@ export const CategoryContainer = styled.div`
   align-items: ${({ hamburguerMenuOpen }) =>
     hamburguerMenuOpen ? "center" : "flex-end"};
   justify-content: space-between;
-  gap: 25px;
+  gap: 90px;
+
   padding: ${({ hamburguerMenuOpen }) => hamburguerMenuOpen && "80px 24px"};
   @media only screen and (max-width: 575px) {
     flex-direction: column;
     align-items: center;
-    height: 900px;
+    min-height: 100vh;
     padding-bottom: 45px;
+    width: 100%;
   }
 `;

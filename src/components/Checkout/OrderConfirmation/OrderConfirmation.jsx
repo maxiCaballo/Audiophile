@@ -40,9 +40,9 @@ function OrderConfirmation({
       onClick={() => setShowOrderConfirmation(false)}
     >
       {spinner ? (
-        <Spinner size={60} />
+        <Spinner spinnerSize={60} containerHeight={20} />
       ) : (
-        <div onClick={(e) => e.stopPropagation()}>
+        <div onClick={(e) => e.stopPropagation()} className="container">
           <div>
             <img src={iconConfirmation} alt="confirmation" />
           </div>
@@ -95,8 +95,7 @@ export default OrderConfirmation;
 
 //Styles
 const OrderConfirmationStyles = styled(defaultStyle)`
-  padding: 224px 24px;
-
+  padding: 100px 24px;
   & h5 {
     display: flex;
     flex-direction: column;

@@ -34,6 +34,7 @@ function Header() {
   if (document.readyState === "complete") {
     const main = document.querySelector("Main");
     const footer = document.querySelector("Footer");
+
     if (hamburgerMenuOpen) {
       main.style.display = "none";
       footer.style.display = "none";
@@ -100,9 +101,6 @@ function Header() {
           <nav className="centered">
             <ul>
               <li>
-                <NavbarLink to="/">HOME</NavbarLink>
-              </li>
-              <li>
                 <NavbarLink to="/categories/headphones">HEADPHONES</NavbarLink>
               </li>
               <li>
@@ -110,6 +108,9 @@ function Header() {
               </li>
               <li>
                 <NavbarLink to="/categories/earphones">EARPHONES</NavbarLink>
+              </li>
+              <li>
+                <NavbarLink to="/categories/earphones">PURCHASES</NavbarLink>
               </li>
             </ul>
           </nav>
@@ -232,21 +233,30 @@ const HeaderStyles = styled.header`
     & nav {
       width: 100%;
       display: flex;
+      justify-content: flex-start;
     }
     & nav ul {
       margin: 0;
       display: flex;
-      justify-content: flex-start;
-      gap: 30px;
+      justify-content: center;
       align-items: center;
-      width: 429px;
+      gap: 30px;
+      width: 100%;
       list-style: none;
+      padding: 0;
     }
     & nav ul li {
       font-size: 1.3rem;
       line-height: 25px;
       letter-spacing: 2px;
       position: relative;
+    }
+    & nav ul li:last-child {
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    & nav ul {
+      gap: 20px;
     }
   }
   @media only screen and (max-width: 350px) {

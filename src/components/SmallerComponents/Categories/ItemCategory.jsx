@@ -99,6 +99,9 @@ const Item = styled.div`
     & img {
       transform: translateY(-15px);
     }
+    & > div:nth-child(2) > div:nth-child(1) span {
+      color: var(--white);
+    }
     & > div:nth-child(2) > div:nth-child(2) {
       span:nth-child(1) {
         color: var(--color1);

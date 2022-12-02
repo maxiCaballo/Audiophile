@@ -30,11 +30,12 @@ body {
   background-color: var(--white);
   height: 100%;
 }
+
 #root {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  min-height: 100%;
   position: relative;
-  height: 100%;
 }
 .marginBetweenComponents {
   margin: var(--marginBetweenComponents);

@@ -1,5 +1,3 @@
-//Hooks
-//import { useHeightStyle } from "../../../hooks/useHeightStyle";
 //Components
 import { DefaultLink } from "../Styles/Link";
 //Styles
@@ -10,11 +8,9 @@ function AccesDenied({
   redirectionPath,
   redirectionButtonMessage,
 }) {
-  //const height = useHeightStyle();
-
   return (
     <>
-      <Container className="container" /* height={height} */>
+      <Container className="container">
         <h2>Ups!</h2>
         <div>
           <p>{messageError}</p>

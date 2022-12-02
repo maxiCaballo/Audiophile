@@ -11,7 +11,7 @@ import { useState } from "react";
 import { startRegisterPurchase } from "../../firebase/actions";
 
 function Checkout() {
-  const [showOrderConfirmation, setShowOrderConfirmation] = useState(true);
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
   const cart = useSelector((state) => state.cart);
 
   const { status, displayName, email, uid } = useSelector(
@@ -35,6 +35,8 @@ function Checkout() {
 
   function onSubmit(data) {
     setShowOrderConfirmation(true);
+    delete data.creditCardNumber;
+    delete data.creditCardPin;
     const products = [];
     //Set date and hour;
     const date = new Date();

@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 //thunks actions
 import {
-  checkingAuthentication,
+  // checkingAuthentication,
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../Redux/auth/thunks";
@@ -33,11 +33,6 @@ function Login() {
   const authState = useSelector((state) => state.auth);
   const [clickOnGoogleButton, setClickOnGoogleButton] = useState(true);
 
-  /*   const isAuthenticating = useMemo(
-    () => authState.status === "checking",
-    [authState.status]
-  ); */
-
   function onSubmit(data) {
     dispatch(startLoginWithEmailPassword(data));
   }
@@ -48,85 +43,87 @@ function Login() {
   }, []);
 
   return (
-    <Container className="animate__animated animate__fadeIn">
-      <h3 className="centered">Login</h3>
-      <div className="container">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <InputContainerStyles>
-            <Label htmlFor="email">
-              Email{" "}
-              {errors.email && clickOnGoogleButton && (
-                <span>{errors.email.message}</span>
-              )}
-            </Label>
-            <Input
-              type="text"
-              name="email"
-              id="email"
-              cartOpen={cart.open}
-              error={clickOnGoogleButton && errors.email}
-              {...register("email", {
-                required: { value: true, message: "Field required" },
-                pattern: {
-                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                  message: "Enter a valid email",
-                },
-              })}
-            />
-          </InputContainerStyles>
+    <>
+      <Container className="animate__animated animate__fadeIn">
+        <h3 className="centered">Login</h3>
+        <div className="container">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <InputContainerStyles>
+              <Label htmlFor="email">
+                Email{" "}
+                {errors.email && clickOnGoogleButton && (
+                  <span>{errors.email.message}</span>
+                )}
+              </Label>
+              <Input
+                type="text"
+                name="email"
+                id="email"
+                cartOpen={cart.open}
+                error={clickOnGoogleButton && errors.email}
+                {...register("email", {
+                  required: { value: true, message: "Field required" },
+                  pattern: {
+                    value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                    message: "Enter a valid email",
+                  },
+                })}
+              />
+            </InputContainerStyles>
 
-          <InputContainerStyles>
-            <Label htmlFor="password">
-              Password{" "}
-              {errors.password && clickOnGoogleButton && (
-                <span>{errors.password.message}</span>
-              )}
-            </Label>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              cartOpen={cart.open}
-              error={clickOnGoogleButton && errors.password}
-              {...register("password", {
-                required: { value: true, message: "Field required" },
-              })}
-            />
-          </InputContainerStyles>
+            <InputContainerStyles>
+              <Label htmlFor="password">
+                Password{" "}
+                {errors.password && clickOnGoogleButton && (
+                  <span>{errors.password.message}</span>
+                )}
+              </Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                cartOpen={cart.open}
+                error={clickOnGoogleButton && errors.password}
+                {...register("password", {
+                  required: { value: true, message: "Field required" },
+                })}
+              />
+            </InputContainerStyles>
 
-          <div className="centered">
-            <Button
-              /*   disabled={isAuthenticating} */
-              type="submit"
-              onClick={() => {
-                setClickOnGoogleButton(true);
-                dispatch(checkingAuthentication());
-              }}
-            >
-              Login
-            </Button>
-            <TransparentButtonStyles
-              /*  disabled={isAuthenticating} */
-              onClick={() => {
-                setClickOnGoogleButton(false);
-                dispatch(startGoogleSignIn());
-              }}
-            >
-              Sign in with Google
-              <img src={googleIcon} alt="sign In with google" />
-            </TransparentButtonStyles>
+            <div className="centered">
+              <Button
+                /*   disabled={isAuthenticating} */
+                type="submit"
+                onClick={() => {
+                  setClickOnGoogleButton(true);
+                  // dispatch(checkingAuthentication());
+                }}
+              >
+                Login
+              </Button>
+              <TransparentButtonStyles
+                /*  disabled={isAuthenticating} */
+                onClick={() => {
+                  setClickOnGoogleButton(false);
+                  dispatch(startGoogleSignIn());
+                }}
+              >
+                Sign in with Google
+                <img src={googleIcon} alt="sign In with google" />
+              </TransparentButtonStyles>
+            </div>
+          </form>
+          <div>
+            <Link to="/user/register">Create account {">"}</Link>
           </div>
-        </form>
-        <div>
-          <Link to="/user/register">Create account {">"}</Link>
         </div>
-      </div>
-      {authState.errorMessage && (
-        <div className="errorMessage">
-          <span>{authState.errorMessage}.</span>
-        </div>
-      )}
-    </Container>
+        {authState.errorMessage && (
+          <div className="errorMessage">
+            <span>{authState.errorMessage}.</span>
+          </div>
+        )}
+      </Container>
+    </>
   );
 }
 
