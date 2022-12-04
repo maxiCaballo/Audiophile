@@ -39,8 +39,7 @@ function ItemCategory({ img, category }) {
 export default ItemCategory;
 
 const Item = styled.div`
-  height: ${({ hamburguerMenuOpen }) =>
-    hamburguerMenuOpen ? "150px" : "204px"};
+  height: 204px;
   background-color: var(--color4);
   border-radius: var(--cardBorderRadius);
   cursor: pointer;
@@ -110,6 +109,12 @@ const Item = styled.div`
       span:nth-child(2) {
         transform: translateX(13px);
       }
+    }
+  }
+  //Para que en esa resolución no toque los bordes el span con el nombre de la categoría
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    & > div:nth-child(2) > div:nth-child(1) span {
+      font-size: 1.4rem;
     }
   }
 `;

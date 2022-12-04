@@ -8,10 +8,3 @@ export const defaultStyle = styled.div`
   inset: 89px 0 0 0;
   z-index: 10;
 `;
-
-export const HamburgerMenuContainer = styled(defaultStyle)`
-  background-color: var(--white);
-  @media only screen and (min-width: 800px) {
-    display: none;
-  }
-`;

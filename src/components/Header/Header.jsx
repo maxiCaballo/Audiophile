@@ -12,13 +12,14 @@ import { useNavigate } from "react-router-dom";
 //Components
 import { NavbarLink } from "../SmallerComponents/Styles/Link";
 import { Link } from "react-router-dom";
-import { HamburgerMenuContainer } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
+import { defaultStyle } from "../SmallerComponents/Cart-Hamburguer-CheckOut-ContainerStyle/Style";
 import { totalProducts } from "../Cart/Cart";
-import Categories from "../SmallerComponents/Categories/Categories";
 import Cart from "../Cart/Cart";
 //Styles
 import styled from "styled-components";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import closeMenuIcon from "../../assets/close.png";
+//TODO: Fijarse si se usa en otros componentes sino borrarlo
+// import useWindowWidth from "../../hooks/useWindowWidth";
 import loginIcon from "../../assets/login.png";
 import logoutIcon from "../../assets/logout.png";
 
@@ -27,25 +28,9 @@ function Header() {
   const cart = useSelector((state) => state.cart);
   const authState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const windowWidth = useWindowWidth();
   const navigate = useNavigate();
 
-  //Para que no haya un scroll enorme cuando está abierto el menú hamburguesa
-  if (document.readyState === "complete") {
-    const main = document.querySelector("Main");
-    const footer = document.querySelector("Footer");
-
-    if (hamburgerMenuOpen) {
-      main.style.display = "none";
-      footer.style.display = "none";
-    }
-    if (!hamburgerMenuOpen || windowWidth >= 800) {
-      main.style.display = "block";
-      footer.style.display = "block";
-    }
-  }
-
-  //Si está abierto uno cierro el otro y viceversa.
+  //Si está abierto el carrito cierro el HamburgerMenu y viceversa.
   function handleHamburguerMenu() {
     if (cart.open) {
       dispatch(openMenu());
@@ -66,8 +51,50 @@ function Header() {
 
   return (
     <>
-      <HamburgerMenuContainer visible={hamburgerMenuOpen}>
-        <Categories />
+      <HamburgerMenuContainer
+        visible={hamburgerMenuOpen}
+        className={!hamburgerMenuOpen && "hideHamburgerMenu"}
+        onClick={() => dispatch(closeMenu())}
+      >
+        <div className="container">
+          <nav>
+            <ul>
+              <li>
+                <NavbarLink
+                  to="/categories/headphones"
+                  onClick={() => dispatch(closeMenu())}
+                >
+                  HEADPHONES
+                </NavbarLink>
+              </li>
+
+              <li>
+                <NavbarLink
+                  to="/categories/speakers"
+                  onClick={() => dispatch(closeMenu())}
+                >
+                  SPEAKERS
+                </NavbarLink>
+              </li>
+              <li>
+                <NavbarLink
+                  to="/categories/earphones"
+                  onClick={() => dispatch(closeMenu())}
+                >
+                  EARPHONES
+                </NavbarLink>
+              </li>
+              <li>
+                <NavbarLink
+                  to="/purchases"
+                  onClick={() => dispatch(closeMenu())}
+                >
+                  PURCHASES
+                </NavbarLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </HamburgerMenuContainer>
       <Cart />
       <HeaderStyles totalProducts={totalProducts(cart.products)}>
@@ -76,16 +103,20 @@ function Header() {
             className="centered hamburguerIcon"
             onClick={() => handleHamburguerMenu()}
           >
-            <svg
-              width="16"
-              height="15"
-              xmlns="http://www.w3.org/2000/svg"
-              className="hamburguerIcon"
-            >
-              <g fill="#FFF" fillRule="evenodd">
-                <path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z" />
-              </g>
-            </svg>
+            {!hamburgerMenuOpen ? (
+              <svg
+                width="16"
+                height="15"
+                xmlns="http://www.w3.org/2000/svg"
+                className="hamburguerIcon"
+              >
+                <g fill="#FFF" fillRule="evenodd">
+                  <path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z" />
+                </g>
+              </svg>
+            ) : (
+              <img src={closeMenuIcon} alt="close menú" className="closeMenu" />
+            )}
           </div>
           <div className="centered logo">
             <Link to="/">
@@ -159,7 +190,6 @@ const HeaderStyles = styled.header`
   background-color: var(--color6);
   color: var(--color4);
   padding: 32px 0;
-
   & nav,
   ul {
     display: none;
@@ -167,6 +197,10 @@ const HeaderStyles = styled.header`
   & > :nth-child(1) {
     display: flex;
     justify-content: flex-start;
+  }
+  & .closeMenu {
+    filter: invert(100%) sepia(94%) saturate(2%) hue-rotate(146deg)
+      brightness(111%) contrast(100%);
   }
   & .logoutLoginPhotoContainer {
     padding-right: 10px;
@@ -266,5 +300,59 @@ const HeaderStyles = styled.header`
     & .iconPhoto {
       margin-right: 10px;
     }
+  }
+`;
+const HamburgerMenuContainer = styled(defaultStyle)`
+  backdrop-filter: blur(0.9rem);
+  display: block;
+  transition: transform 0.7s;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: "Cinzel";
+  & div {
+    & nav {
+      & ul {
+        margin: 0;
+        list-style: none;
+        & li {
+          font-size: 2rem;
+          margin: 55px 0;
+          letter-spacing: 0.7rem;
+          position: relative;
+
+          &::before {
+            content: ">";
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            color: grey;
+            margin-right: 2rem;
+          }
+          & a:not(.active) {
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              height: 2px;
+              background: var(--color1);
+              left: 0;
+              right: 0;
+              bottom: 0;
+              opacity: 0;
+              transform-origin: left center;
+              transform: scaleX(0);
+              transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            }
+            &:hover::after {
+              transform: scaleX(1);
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    display: none;
   }
 `;
