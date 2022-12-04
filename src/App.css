@@ -83,7 +83,9 @@ body {
 .toastBody {
   font-size: 1.4rem;
 }
-
+.active {
+  color: var(--color1) !important;
+}
 /*------ My classes -End- ------*/
 h1,
 h2,

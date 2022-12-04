@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const DefaultLink = styled(Link)`
   width: 160px;
@@ -48,7 +48,7 @@ export const CategoriesLink = styled(Link)`
     width: 100%;
   }
 `;
-export const NavbarLink = styled(Link)`
+export const NavbarLink = styled(NavLink)`
   text-decoration: none;
   color: var(--white);
   transition: color 0.3s;

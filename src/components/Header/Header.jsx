@@ -110,7 +110,7 @@ function Header() {
                 <NavbarLink to="/categories/earphones">EARPHONES</NavbarLink>
               </li>
               <li>
-                <NavbarLink to="/categories/earphones">PURCHASES</NavbarLink>
+                <NavbarLink to="/purchases">PURCHASES</NavbarLink>
               </li>
             </ul>
           </nav>
