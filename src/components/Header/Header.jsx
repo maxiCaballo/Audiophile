@@ -18,8 +18,6 @@ import Cart from "../Cart/Cart";
 //Styles
 import styled from "styled-components";
 import closeMenuIcon from "../../assets/close.png";
-//TODO: Fijarse si se usa en otros componentes sino borrarlo
-// import useWindowWidth from "../../hooks/useWindowWidth";
 import loginIcon from "../../assets/login.png";
 import logoutIcon from "../../assets/logout.png";
 

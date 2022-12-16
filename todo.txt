@@ -1,0 +1,11 @@
+TODO
+Prioridad:
+1)Mostrar correctamente error si se trata de loguerase o registrarse, se borra. -> ARREGLADO PERO CON DUDAS SI FUNCIONA EN TEORIA SI
+2)Error en consola spinner
+
+
+
+
+1) Poner logica en las paginas y no dejar solo un componente que se el que tenga todo, modularizar los componentes y traerlos  a la page.
+2) Capaz pasar todo a typescript
+3) Pasar todos los estilos a un archivo styles.js

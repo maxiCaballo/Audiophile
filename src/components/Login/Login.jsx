@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 //React hook form
 import { useForm } from "react-hook-form";
 //React router
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //thunks actions
 import {
   // checkingAuthentication,
@@ -23,6 +23,8 @@ import googleIcon from "../../assets/googleIcon.png";
 import "animate.css";
 
 function Login() {
+  const location = useLocation();
+
   const {
     register,
     handleSubmit,
@@ -38,7 +40,15 @@ function Login() {
   }
 
   useEffect(() => {
-    if (authState.errorMessage) dispatch(removeErrorMessage());
+    //if (authState.errorMessage) dispatch(removeErrorMessage());
+    if (
+      location.state?.previousURL === "/user/register" &&
+      authState.errorMessage
+    ) {
+      dispatch(removeErrorMessage());
+      location.state.previousURL = null;
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -114,7 +124,9 @@ function Login() {
             </div>
           </form>
           <div>
-            <Link to="/user/register">Create account {">"}</Link>
+            <Link to="/user/register" state={{ previousURL: "/login" }}>
+              Create account {">"}
+            </Link>
           </div>
         </div>
         {authState.errorMessage && (

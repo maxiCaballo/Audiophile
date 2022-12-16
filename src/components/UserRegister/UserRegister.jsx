@@ -2,7 +2,7 @@ import { useEffect } from "react";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //React router
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //thunks actions
 import {
   checkingAuthentication,
@@ -22,6 +22,7 @@ import styled from "styled-components";
 import "animate.css";
 
 function UserRegister() {
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -37,7 +38,12 @@ function UserRegister() {
     dispatch(startCreatingUserWithEmailPassword(data));
   }
   useEffect(() => {
-    if (authState.errorMessage) dispatch(removeErrorMessage());
+    if (location.state?.previousURL === "/login" && authState.errorMessage) {
+      dispatch(removeErrorMessage());
+      location.state.previousURL = null;
+    }
+    console.log(location);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -106,14 +112,15 @@ function UserRegister() {
             <Button
               //  disabled={isAuthenticating}
               type="submit"
-              onClick={() => dispatch(checkingAuthentication())}
             >
               Create
             </Button>
           </div>
         </form>
         <div>
-          <Link to="/login">¿ Already have an account ?</Link>
+          <Link to="/login" state={{ previousURL: "/user/register" }}>
+            ¿ Already have an account ?
+          </Link>
         </div>
       </div>
       {authState.errorMessage && (

@@ -7,7 +7,7 @@ import UserRegister from "../pages/UserRegister";
 //Components
 import AccesDenied from "../components/SmallerComponents/AccesDenied/AccesDenied";
 //React-router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function NotAuthenticatedRoute() {
   return (
@@ -37,6 +37,7 @@ function NotAuthenticatedRoute() {
           />
         }
       />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

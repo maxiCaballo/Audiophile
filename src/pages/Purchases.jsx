@@ -48,7 +48,7 @@ function Purchases() {
   }
 
   return (
-    <DIV /* height={height} */ className="container">
+    <DIV className="container">
       <h2>Purchases</h2>
       <PurchaseContainer>
         {purchases.length > 0 &&
@@ -158,7 +158,7 @@ export default Purchases;
 
 const DIV = styled.div`
   height: 100%;
-  padding-bottom: 80px;
+  padding-bottom: 80px !important ; // Para sobrescribri el container de boostrap;
   & h2 {
     text-align: center;
     padding: 25px 0;

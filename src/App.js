@@ -4,10 +4,10 @@ import { useCheckAuth } from "./hooks/useCheckAuth";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/SmallerComponents/ScrollToTop/ScrollToTop";
-import Spinner from "./components/SmallerComponents/Spinner/Spinner";
 //Routes
 import AuthenticatedRoute from "./router/AuthenticatedRoute";
 import NotAuthenticatedRoute from "./router/NotAuthenticatedRoute";
+import CheckingRoute from "./router/CheckingRoute";
 //Styles
 import "./App.css";
 
@@ -21,12 +21,7 @@ function App() {
   if (status === "checking") {
     return (
       <>
-        <ScrollToTop />
-        <Header />
-        <main>
-          <Spinner />
-        </main>
-        <Footer />
+        <CheckingRoute />
       </>
     );
   }

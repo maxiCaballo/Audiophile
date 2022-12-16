@@ -42,7 +42,9 @@ function Checkout() {
     const date = new Date();
     const dateTimePurchase = `${date.toLocaleDateString("es-ES")} ${date
       .getHours()
-      .toString()}:${date.getMinutes().toString()}`;
+      .toString()}:${
+      (date.getMinutes() < 10 ? "0" : "") + date.getMinutes().toString()
+    }`;
     //Para que el array de products no tenga muchas propiedades
     for (const { id, name, quantity, unitPrice } of cart.products) {
       const auxObj = {

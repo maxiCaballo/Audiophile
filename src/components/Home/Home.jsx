@@ -34,7 +34,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   const authState = useSelector((state) => state.auth);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
