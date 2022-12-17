@@ -1,15 +1,18 @@
+//Data
+import { data } from "../../data";
 //Components
 import ProductDetail from "../SmallerComponents/ProductDetails/ProductDetail";
 import About from "../SmallerComponents/About/About";
 import Categories from "../SmallerComponents/Categories/Categories";
 import { DefaultLink } from "../SmallerComponents/Styles/Link";
-//
+//Functions
 import {
   GetGalleryImageByWindowWidth,
   GetOthersProductImageByWindowWidth,
 } from "../../Functions/getImageByWindowWidth";
+//React router dom
 import { useParams } from "react-router-dom";
-import { data } from "../../data";
+//Styles
 import styled from "styled-components";
 
 function Product() {

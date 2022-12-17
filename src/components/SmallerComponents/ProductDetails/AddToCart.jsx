@@ -1,47 +1,69 @@
 //Components
 import { QuantityContainerStyles as Quantity } from "../Styles/Quantity";
-//
+//React
 import { useState } from "react";
+//Redux
 import { useDispatch } from "react-redux";
 import { addProducts } from "../../../Redux/cartSlice";
 //Styles
 import styled from "styled-components";
 import { Button as BtnAddToCart } from "../Styles/Button";
+//Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddToCart({ item }) {
   const [quantity, setQuantity] = useState(0);
   const { id, name, slug, price, shortName } = item;
   const dispatch = useDispatch();
-
   return (
-    <Container>
-      <span>$ {price}</span>
-      <div>
-        <Quantity>
-          <button onClick={() => setQuantity(quantity - 1)}>-</button>
-          <input type="number" value={quantity} readOnly />
-          <button onClick={() => setQuantity(quantity + 1)}>+</button>
-        </Quantity>
-        <BtnAddToCart
-          onClick={() => {
-            dispatch(
-              addProducts({
-                id,
-                name,
-                shortName,
-                slug,
-                quantity,
-                unitPrice: price,
-                totalPrice: 0,
-              })
-            );
-            setQuantity(0);
-          }}
-        >
-          add to cart
-        </BtnAddToCart>
-      </div>
-    </Container>
+    <>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        bodyClassName="toastBody"
+      />
+      <Container>
+        <span>$ {price}</span>
+        <div>
+          <Quantity>
+            <button onClick={() => setQuantity(quantity - 1)}>-</button>
+            <input type="number" value={quantity} readOnly />
+            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          </Quantity>
+          <BtnAddToCart
+            onClick={() => {
+              dispatch(
+                addProducts({
+                  id,
+                  name,
+                  shortName,
+                  slug,
+                  quantity,
+                  unitPrice: price,
+                  totalPrice: 0,
+                })
+              );
+              if (quantity > 0) {
+                toast.success("Product added to cart");
+                window.scrollTo(0, 0);
+              }
+              setQuantity(0);
+            }}
+          >
+            add to cart
+          </BtnAddToCart>
+        </div>
+      </Container>
+    </>
   );
 }
 

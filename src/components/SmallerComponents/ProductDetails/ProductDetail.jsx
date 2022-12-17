@@ -4,6 +4,9 @@ import { useRef } from "react";
 import AddToCart from "./AddToCart";
 import { DefaultLink } from "../Styles/Link";
 import { GetImageProductByWindowWidth } from "../../../Functions/getImageByWindowWidth";
+//React router dom
+import { useLocation, useNavigate } from "react-router-dom";
+
 //Functions
 import { useScrollAppear } from "../../../Functions/scrollAppear";
 //Styles
@@ -11,6 +14,8 @@ import styled from "styled-components";
 import "animate.css";
 
 function ProductDetail({ item, categoryPage, productPage, evenElement }) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const element = useRef(null);
   useScrollAppear(element, evenElement, productPage);
 
@@ -27,9 +32,19 @@ function ProductDetail({ item, categoryPage, productPage, evenElement }) {
       className="container"
       productPage={productPage}
       categoryPage={categoryPage}
+      pathname={pathname}
     >
       <div>
-        <img src={image} alt={item.name} width="100%" height="100%" />
+        <img
+          src={image}
+          alt={item.name}
+          onClick={() => {
+            if (pathname.includes("categories"))
+              navigate(`/products/${item.slug}`);
+          }}
+          width="100%"
+          height="100%"
+        />
       </div>
       <div
         ref={element}
@@ -62,6 +77,7 @@ const Container = styled.div`
   margin: ${({ categoryPage }) =>
     categoryPage ? "var(--marginBetweenComponents)" : "82px auto 120px"};
   & img {
+    cursor: ${({ pathname }) => pathname.includes("categories") && "pointer"};
     border-radius: var(--cardBorderRadius);
   }
   //Details

@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
     },
     addProducts: (state, action) => {
       const { id, quantity, unitPrice } = action.payload;
-      if (action.payload.quantity > 0) {
+      if (quantity > 0) {
         const productAlreadyExist = state.products.find(
           (product) => product.id === id
         );

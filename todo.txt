@@ -2,7 +2,8 @@ TODO
 Prioridad:
 1)Mostrar correctamente error si se trata de loguerase o registrarse, se borra. -> ARREGLADO PERO CON DUDAS SI FUNCIONA EN TEORIA SI
 2)Error en consola spinner
-
+3) Al darle click a la imagen del producto en categoría llevarlo a product page -> Pronto
+4) Avisar con toastify cuando se agregó un producto al carrito y llevarlo al comienzo de la page.
 
 
 
